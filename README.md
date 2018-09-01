@@ -2,9 +2,9 @@
 
 A new Flutter project.
 An app for interview preparation.
-**Has some unique animations.
-**More than 100 questions and answer.
-**Has good UI.
+# Unique animations.
+# More than 100 questions and answer.
+# Good UI.
 
 ## Getting Started
 
