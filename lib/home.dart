@@ -8,6 +8,7 @@ import 'package:url_launcher/url_launcher.dart' as urlLauncher;
 import 'package:flutter/gestures.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'appid.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -31,6 +32,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   MenuController _menuController;
   BannerAd bannerAd;
   var data;
+  FirebaseMessaging messaging=FirebaseMessaging();
 
 ///Admob configuration.
 static final MobileAdTargetingInfo targetingInfo = new MobileAdTargetingInfo(
@@ -153,6 +155,18 @@ static final MobileAdTargetingInfo targetingInfo = new MobileAdTargetingInfo(
 
   @override
   void initState() {
+    messaging.configure(
+        onLaunch: (Map<String, dynamic> event) {},
+        onMessage: (Map<String, dynamic> event) {},
+        onResume: (Map<String, dynamic> event) {});
+    messaging.requestNotificationPermissions(const IosNotificationSettings(
+      sound: true,
+      alert: true,
+      badge: true,
+    ));
+    messaging.onIosSettingsRegistered
+        .listen((IosNotificationSettings setting) {});
+    messaging.getToken().then((msg) {});
     super.initState();
     _menuController = new MenuController(vsync: this);
      FirebaseAdMob.instance.initialize(appId: Appid.ADMOB_APP_ID);
