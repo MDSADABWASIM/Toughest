@@ -32,10 +32,10 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   MenuController _menuController;
   BannerAd bannerAd;
   var data;
-  FirebaseMessaging messaging=FirebaseMessaging();
+  FirebaseMessaging messaging = FirebaseMessaging();
 
-///Admob configuration.
-static final MobileAdTargetingInfo targetingInfo = new MobileAdTargetingInfo(
+  ///Admob configuration.
+  static final MobileAdTargetingInfo targetingInfo = new MobileAdTargetingInfo(
     testDevices: <String>[],
     birthday: DateTime.now(),
     childDirected: true,
@@ -91,29 +91,53 @@ static final MobileAdTargetingInfo targetingInfo = new MobileAdTargetingInfo(
     }
   }
 
-  AboutListTile _buildAboutListTile(BuildContext context) {
-    final TextStyle bodyStyle =
-        new TextStyle(fontSize: 15.0, color: Colors.black);
+  @override
+  void initState() {
+    messaging.configure(
+        onLaunch: (Map<String, dynamic> event) {},
+        onMessage: (Map<String, dynamic> event) {},
+        onResume: (Map<String, dynamic> event) {});
+    messaging.requestNotificationPermissions(const IosNotificationSettings(
+      sound: true,
+      alert: true,
+      badge: true,
+    ));
+    messaging.onIosSettingsRegistered
+        .listen((IosNotificationSettings setting) {});
+    messaging.getToken().then((msg) {});
+    super.initState();
+    _menuController = new MenuController(vsync: this);
+    FirebaseAdMob.instance.initialize(appId: Appid.ADMOB_APP_ID);
+    bannerAd = createBannerAd()
+      ..load()
+      ..show();
+  }
+
+  @override
+  void dispose() {
+    bannerAd?.dispose();
+    super.dispose();
+  }
+
+  showAbout(BuildContext context) {
     final TextStyle linkStyle =
         Theme.of(context).textTheme.body2.copyWith(color: Colors.blue);
+    final TextStyle bodyStyle =
+        new TextStyle(fontSize: 15.0, color: Colors.black);
 
-    return new AboutListTile(
-        icon: new Icon(
-          Icons.person,
-          color: Colors.white,
-        ),
+    return showAboutDialog(
+        context: context,
         applicationIcon: Center(
-          child: new Image(
-            height: 130.0,
-            image: new AssetImage("lib/asset/image/me.jpg"),
+          child: Image(
+            height: 150.0,
+            width: 200.0,
             fit: BoxFit.fitWidth,
+            image: AssetImage("assets/images/author.png"),
           ),
         ),
-        child: new Text(
-          "About Us",
-        ),
-        // TODO
-        aboutBoxChildren: <Widget>[
+        // applicationName: 'Toughest',
+        // applicationVersion: '1.0',
+        children: <Widget>[
           new Padding(
               padding: const EdgeInsets.only(top: 5.0),
               child: new RichText(
@@ -121,11 +145,12 @@ static final MobileAdTargetingInfo targetingInfo = new MobileAdTargetingInfo(
                   text: new TextSpan(children: <TextSpan>[
                     new TextSpan(
                         style: bodyStyle,
-                        text:
-                            'Hello,  I am Sadab from the Indian coder, an android and ios app developer, ' +
-                                " I am passionate about translating ideas " +
-                                ' into user-friendly apps.' +
-                                "\n\n"),
+                        text: 'Hello,  We are Indian coder, we develop android and ios apps, ' +
+                            " we are passionate about translating ideas " +
+                            ' into user-friendly apps.' +
+                            ' If you want to develop app for your business or anything feel free to contact us.'
+                            ' We can build awesome apps in lowest price range.'
+                            "\n\n"),
                     new TextSpan(
                       style: bodyStyle,
                       text: 'for Business Queries:' + "\n\n",
@@ -153,32 +178,7 @@ static final MobileAdTargetingInfo targetingInfo = new MobileAdTargetingInfo(
         ]);
   }
 
-  @override
-  void initState() {
-    messaging.configure(
-        onLaunch: (Map<String, dynamic> event) {},
-        onMessage: (Map<String, dynamic> event) {},
-        onResume: (Map<String, dynamic> event) {});
-    messaging.requestNotificationPermissions(const IosNotificationSettings(
-      sound: true,
-      alert: true,
-      badge: true,
-    ));
-    messaging.onIosSettingsRegistered
-        .listen((IosNotificationSettings setting) {});
-    messaging.getToken().then((msg) {});
-    super.initState();
-    _menuController = new MenuController(vsync: this);
-     FirebaseAdMob.instance.initialize(appId: Appid.ADMOB_APP_ID);
-    bannerAd = createBannerAd()
-      ..load()
-      ..show();
-  }
-  @override
-  void dispose() {
-    bannerAd?.dispose();
-    super.dispose();
-  }
+  ///Lis-t of interview questions.
   Widget getListItems(Color color, IconData icon, String title) {
     return GestureDetector(
         child: Container(
@@ -221,18 +221,18 @@ static final MobileAdTargetingInfo targetingInfo = new MobileAdTargetingInfo(
         header: new ConstrainedBox(
           constraints: new BoxConstraints(maxHeight: 80.0, maxWidth: 100.0),
           child: new CircleAvatar(
-            backgroundImage: new AssetImage('assets/images/author.png'),
-            radius: 50.0,
+            backgroundImage: new AssetImage('assets/images/icon.jpg'),
+            radius: 30.0,
           ),
         ),
         children: <Widget>[
-          ///I have to make these widgets manually containing different methods.
+          ///I have to make these widgets manually cause it is containing different methods.
           new Material(
             color: Colors.transparent,
             child: new InkWell(
               child: ResideMenuItem(
                 title: 'Share the App',
-                icon: const Icon(Icons.share, color: Colors.white),
+                icon: const Icon(Icons.share, color: Colors.black),
               ),
               onTap: () => _sharer(),
             ),
@@ -241,13 +241,12 @@ static final MobileAdTargetingInfo targetingInfo = new MobileAdTargetingInfo(
             color: Colors.transparent,
             child: new InkWell(
               child: ResideMenuItem(
-                title: 'Suggestions / Issues',
-                icon: const Icon(Icons.bug_report, color: Colors.white),
+                title: 'Suggestions',
+                icon: const Icon(Icons.bug_report, color: Colors.black),
               ),
               onTap: () => _launchgmail(),
             ),
           ),
-    // buildItem('Feedback', _sharer())
         ],
       ),
       child: new Scaffold(
@@ -270,13 +269,12 @@ static final MobileAdTargetingInfo targetingInfo = new MobileAdTargetingInfo(
           ),
           actions: <Widget>[
             IconButton(
-              icon: Icon(
-                Icons.person_outline,
-                color: Colors.black,
-                size: 15.0,
-              ),
-              onPressed: ()=> _buildAboutListTile(context),
-            )
+                icon: Icon(
+                  Icons.person_outline,
+                  color: Colors.black,
+                  size: 20.0,
+                ),
+                onPressed: () => showAbout(context))
           ],
         ),
         body: ListView(
@@ -284,11 +282,16 @@ static final MobileAdTargetingInfo targetingInfo = new MobileAdTargetingInfo(
             getListItems(Color(0xFFF1B136), Icons.person, 'Behavioural Based'),
             getListItems(Color(0xFF885F7F), Icons.wc, 'Communications Based'),
             getListItems(Color(0xFF13B0A5), Icons.call_split, 'Opinion Based'),
-            getListItems(Color(0xFFD0C490), Icons.assessment, 'Performance Based'),
+            getListItems(
+                Color(0xFFD0C490), Icons.assessment, 'Performance Based'),
             getListItems(Color(0xFFEF6363), Icons.help_outline, 'Brainteasers'),
           ],
         ),
-         persistentFooterButtons: <Widget>[Container(height: 30.0,)],
+        persistentFooterButtons: <Widget>[
+          Container(
+            height: 33.0,
+          )
+        ],
       ),
     );
   }

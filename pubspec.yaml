@@ -43,6 +43,7 @@ flutter:
   assets:
      - assets/images/author.png
      - assets/images/background.jpg
+     - assets/images/icon.jpg
      - assets/local.json
      - assets/confetti.json
      

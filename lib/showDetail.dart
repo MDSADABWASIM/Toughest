@@ -164,10 +164,12 @@ class ShowDetailState extends State<ShowDetail> {
             shape: BeveledRectangleBorder(borderRadius: new BorderRadius.circular(5.0)),
             splashColor: Colors.green,
             elevation: 20.0,
-            child: Text("Share answer with your friends"),
+            child: Text("Share answer with your friends",style: Style.regularTextStyle,),
             color: Colors.amber[200],
             onPressed: () => share(widget.quest, widget.ans),
-          )
+          ),
+          SizedBox(height: 20.0),
+      
         ],
       ),
       persistentFooterButtons: <Widget>[
