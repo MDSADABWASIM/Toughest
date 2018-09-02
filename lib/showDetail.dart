@@ -46,6 +46,7 @@ class ShowDetailState extends State<ShowDetail> {
     super.dispose();
   }
 
+///prepare for lottie animation.
   prepareAnimation() async {
     // Checks if the platform we're running on is supported by the animation plugin
     bool canBeUsed = await Fluttie.isAvailable();
@@ -99,6 +100,7 @@ class ShowDetailState extends State<ShowDetail> {
     ),
   );
 
+///add details in card.
   Widget cardDetail(String text) {
     return Stack(
       children: <Widget>[

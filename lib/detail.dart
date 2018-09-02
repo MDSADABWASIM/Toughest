@@ -34,10 +34,12 @@ class Detail extends StatelessWidget {
     Share.share("Answer this question\n\n" + title);
   }
 
+
   _retrieveLocalData() async {
     return await rootBundle.loadString('assets/local.json');
   }
 
+///take the asset and decode json file.
   loadData() async {
     try {
       String type;
@@ -63,6 +65,7 @@ class Detail extends StatelessWidget {
     }
   }
 
+///List of questions uses futurBuilder.
   Widget buildListItems() {
     return FutureBuilder(
       future: loadData(),
@@ -138,6 +141,7 @@ class Detail extends StatelessWidget {
   }
 }
 
+///these two class for json.
 class ItemList {
   List<Item> list;
   ItemList({this.list});

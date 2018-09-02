@@ -93,6 +93,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
 
   @override
   void initState() {
+    //notification configs.
     messaging.configure(
         onLaunch: (Map<String, dynamic> event) {},
         onMessage: (Map<String, dynamic> event) {},
@@ -106,7 +107,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         .listen((IosNotificationSettings setting) {});
     messaging.getToken().then((msg) {});
     super.initState();
+    //menucontroller for residemenu drawer.
     _menuController = new MenuController(vsync: this);
+
     FirebaseAdMob.instance.initialize(appId: Appid.ADMOB_APP_ID);
     bannerAd = createBannerAd()
       ..load()
@@ -210,6 +213,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
+    //to use reside menu library we have to return a residemenu scafford.
     return new ResideMenu.scafford(
       direction: ScrollDirection.LEFT,
       decoration: new BoxDecoration(
@@ -226,7 +230,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
           ),
         ),
         children: <Widget>[
-          ///I have to make these widgets manually cause it is containing different methods.
+          ///I have to make these drawer list widgets manually cause it is containing different methods.
           new Material(
             color: Colors.transparent,
             child: new InkWell(
