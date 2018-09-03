@@ -1,10 +1,9 @@
 # toughest
-
-A new Flutter project.
 An app for interview preparation.
-# Unique animations.
-# More than 100 questions and answer.
-# Good UI.
+Test the app [here](https://play.google.com/store/apps/details?id=tricky.questions)
+## Unique animations.
+## More than 100 questions and answer.
+## Good UI.
 
 ## Getting Started
 
