@@ -17,10 +17,6 @@ class Home extends StatefulWidget {
     return new HomeState();
   }
 }
-// TODO:change version number.
-// FIXME:ADD HEIGHT INTO CARD AND PUBLISH UPDATE
-
-//TODO: create a crousal of images for homepage
 
 class _LinkTextSpan extends TextSpan {
   _LinkTextSpan({TextStyle style, String url, String text})
@@ -224,7 +220,7 @@ final myCraousal=Carousel(
                  borderRadius: true,
                  radius: Radius.circular(10.0),
                  animationCurve: Curves.easeInOut,
-                 animationDuration: Duration(seconds: 2),
+                 animationDuration: Duration(seconds: 4),
                 images: [
                   AssetImage('assets/images/card1.png'),
                   AssetImage('assets/images/card3.png'),
