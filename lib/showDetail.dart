@@ -78,7 +78,7 @@ class ShowDetailState extends State<ShowDetail> {
         "A:" +
         answer +
         "\n\nDownload the app for more amazing Q/A\n " +
-        "https://play.google.com/store/apps/details?id=interview.questions");
+        "https://play.google.com/store/apps/details?id=tricky.questions");
   }
 
   Widget _card = new Container(

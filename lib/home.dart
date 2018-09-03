@@ -16,6 +16,7 @@ class Home extends StatefulWidget {
     return new HomeState();
   }
 }
+// FIXME:ADD HEIGHT INTO CARD AND PUBLISH UPDATE
 
 class _LinkTextSpan extends TextSpan {
   _LinkTextSpan({TextStyle style, String url, String text})
@@ -43,7 +44,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     gender: MobileAdGender.unknown,
     keywords: <String>[
       'self-development',
-      'udemy',
+      'T-shirts',
+      'Shoes',
       'shopping',
       'shopping offers',
       'low price ',
@@ -79,7 +81,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         "The app that will make you an amazing candidate for any job.\n"
         "Are you ready?\n"
         "Download it now\n"
-        "https://play.google.com/store/apps/details?id=interview.questions");
+        "https://play.google.com/store/apps/details?id=tricky.questions");
   }
 
   _launchgmail() async {

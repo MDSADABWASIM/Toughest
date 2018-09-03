@@ -8,17 +8,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:334775414819:android:13f0501e41ee9f96",
+        "mobilesdk_app_id": "1:334775414819:android:9c132ba3d8ea0251",
         "android_client_info": {
-          "package_name": "interview.questions"
+          "package_name": "tricky.questions"
         }
       },
       "oauth_client": [
         {
-          "client_id": "334775414819-udt56inog4344199hc5hfrcfq2lqfgri.apps.googleusercontent.com",
+          "client_id": "334775414819-tbblv9dbm3bs360d50flu35jshg4ppe1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "interview.questions",
+            "package_name": "tricky.questions",
             "certificate_hash": "c0a20c5e285826d3acbe38e92db04a5e5fc66101"
           }
         },
@@ -48,8 +48,7 @@
         "ads_service": {
           "status": 2
         }
-      },
-      "admob_app_id": "ca-app-pub-4925942614482721~1139981968"
+      }
     }
   ],
   "configuration_version": "1"
