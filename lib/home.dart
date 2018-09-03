@@ -220,12 +220,12 @@ final myCraousal=Carousel(
                  borderRadius: true,
                  radius: Radius.circular(10.0),
                  animationCurve: Curves.easeInOut,
-                 animationDuration: Duration(seconds: 4),
+                 animationDuration: Duration(seconds: 2),
                 images: [
                   AssetImage('assets/images/card1.png'),
                   AssetImage('assets/images/card3.png'),
-                   AssetImage('assets/images/card4.png'),
-                    AssetImage('assets/images/card2.png'),
+                  AssetImage('assets/images/card4.png'),
+                  AssetImage('assets/images/card2.png'),
                 ],
               );
   @override

@@ -34,12 +34,11 @@ class Detail extends StatelessWidget {
     Share.share("Answer this question\n\n" + title);
   }
 
-
   _retrieveLocalData() async {
     return await rootBundle.loadString('assets/local.json');
   }
 
-///take the asset and decode json file.
+  ///take the asset and decode json file.
   loadData() async {
     try {
       String type;
@@ -65,7 +64,7 @@ class Detail extends StatelessWidget {
     }
   }
 
-///List of questions uses futurBuilder.
+  ///List of questions uses futurBuilder.
   Widget buildListItems() {
     return FutureBuilder(
       future: loadData(),
@@ -104,18 +103,13 @@ class Detail extends StatelessWidget {
     );
   }
 
- 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: AppBar(
-        elevation: 20.0,
-        backgroundColor: new Color(0xFFC67A7D),
-        title: Text(
-          'Questions'
-        )
-       
-      ),
+          elevation: 20.0,
+          backgroundColor: new Color(0xFFC67A7D),
+          title: Text('Questions')),
       body: Flex(
         direction: Axis.vertical,
         children: <Widget>[
@@ -136,7 +130,7 @@ class Detail extends StatelessWidget {
           ),
         ],
       ),
-       persistentFooterButtons: <Widget>[Container(height: 30.0,)],
+      
     );
   }
 }
