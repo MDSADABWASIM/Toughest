@@ -83,7 +83,7 @@ class ShowDetailState extends State<ShowDetail> {
 
   Widget _card = new Container(
     // child: Text(text, style: TextStyle(fontSize: 15.0)),
-    height: 150.0,
+    height: 160.0,
     margin: new EdgeInsets.all(8.0),
     decoration: new BoxDecoration(
       color: ShowDetail._colors[
