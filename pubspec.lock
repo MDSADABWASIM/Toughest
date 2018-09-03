@@ -276,7 +276,7 @@ packages:
       name: share
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.2"
+    version: "0.5.3"
   shelf:
     dependency: transitive
     description:
