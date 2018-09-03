@@ -314,11 +314,8 @@ final myCraousal=Carousel(
             getListItems(Color(0xFFEF6363), Icons.help_outline, 'Brainteasers'),
           ],
         ),
-        persistentFooterButtons: <Widget>[
-          Container(
-            height: 33.0,
-          )
-        ],
+        
+       
       ),
     );
   }
