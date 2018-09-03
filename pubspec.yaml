@@ -22,6 +22,7 @@ dependencies:
   fluttie: ^0.2.3
   firebase_admob: ^0.5.5
   firebase_messaging: ^1.0.3
+  carousel_pro:
   
 dev_dependencies:
   flutter_test:
@@ -44,6 +45,10 @@ flutter:
      - assets/images/author.png
      - assets/images/background.jpg
      - assets/images/icon.jpg
+     - assets/images/card1.png
+     - assets/images/card2.png
+     - assets/images/card3.png
+     - assets/images/card4.png
      - assets/local.json
      - assets/confetti.json
      

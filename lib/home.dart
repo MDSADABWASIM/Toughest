@@ -9,6 +9,7 @@ import 'package:flutter/gestures.dart';
 import 'package:firebase_admob/firebase_admob.dart';
 import 'appid.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:carousel_pro/carousel_pro.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -16,7 +17,10 @@ class Home extends StatefulWidget {
     return new HomeState();
   }
 }
+// TODO:change version number.
 // FIXME:ADD HEIGHT INTO CARD AND PUBLISH UPDATE
+
+//TODO: create a crousal of images for homepage
 
 class _LinkTextSpan extends TextSpan {
   _LinkTextSpan({TextStyle style, String url, String text})
@@ -213,8 +217,24 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         });
   }
 
+final myCraousal=Carousel(
+               
+                dotSize: 5.0,
+                dotIncreaseSize: 2.0,
+                 borderRadius: true,
+                 radius: Radius.circular(10.0),
+                 animationCurve: Curves.easeInOut,
+                 animationDuration: Duration(seconds: 2),
+                images: [
+                  AssetImage('assets/images/card1.png'),
+                  AssetImage('assets/images/card3.png'),
+                   AssetImage('assets/images/card4.png'),
+                    AssetImage('assets/images/card2.png'),
+                ],
+              );
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     //to use reside menu library we have to return a residemenu scafford.
     return new ResideMenu.scafford(
       direction: ScrollDirection.LEFT,
@@ -285,6 +305,11 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         ),
         body: ListView(
           children: <Widget>[
+            Container(
+              padding: EdgeInsets.only(bottom: 5.0),
+              height:height/2.5 ,
+               child: myCraousal,
+            ),
             getListItems(Color(0xFFF1B136), Icons.person, 'Behavioural Based'),
             getListItems(Color(0xFF885F7F), Icons.wc, 'Communications Based'),
             getListItems(Color(0xFF13B0A5), Icons.call_split, 'Opinion Based'),

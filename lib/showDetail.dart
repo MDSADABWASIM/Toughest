@@ -83,7 +83,7 @@ class ShowDetailState extends State<ShowDetail> {
 
   Widget _card = new Container(
     // child: Text(text, style: TextStyle(fontSize: 15.0)),
-    height: 160.0,
+    height: 170.0,
     margin: new EdgeInsets.all(8.0),
     decoration: new BoxDecoration(
       color: ShowDetail._colors[
@@ -164,10 +164,10 @@ class ShowDetailState extends State<ShowDetail> {
           ),
           RaisedButton(
             shape: BeveledRectangleBorder(borderRadius: new BorderRadius.circular(5.0)),
-            splashColor: Colors.green,
+            splashColor: const Color(0xff382151),
             elevation: 20.0,
             child: Text("Share answer with your friends",style: Style.regularTextStyle,),
-            color: Colors.amber[200],
+            color: Color(0xFF56cfdf),
             onPressed: () => share(widget.quest, widget.ans),
           ),
           SizedBox(height: 20.0),
