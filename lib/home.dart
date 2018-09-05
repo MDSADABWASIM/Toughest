@@ -31,35 +31,35 @@ class _LinkTextSpan extends TextSpan {
 
 class HomeState extends State<Home> with TickerProviderStateMixin {
   MenuController _menuController;
-  BannerAd bannerAd;
+  // BannerAd bannerAd;
   var data;
   FirebaseMessaging messaging = FirebaseMessaging();
 
   ///Admob configuration.
-  static final MobileAdTargetingInfo targetingInfo = new MobileAdTargetingInfo(
-    testDevices: <String>[],
-    birthday: DateTime.now(),
-    childDirected: true,
-    designedForFamilies: true,
-    gender: MobileAdGender.unknown,
-    keywords: <String>[
-      'self-development',
-      'T-shirts',
-      'Shoes',
-      'shopping',
-      'shopping offers',
-      'low price ',
-      'cheapest shopping'
-    ],
-  );
+  // static final MobileAdTargetingInfo targetingInfo = new MobileAdTargetingInfo(
+  //   testDevices: <String>[],
+  //   birthday: DateTime.now(),
+  //   childDirected: true,
+  //   designedForFamilies: true,
+  //   gender: MobileAdGender.unknown,
+  //   keywords: <String>[
+  //     'self-development',
+  //     'T-shirts',
+  //     'Shoes',
+  //     'shopping',
+  //     'shopping offers',
+  //     'low price ',
+  //     'cheapest shopping'
+  //   ],
+  // );
 
-  BannerAd createBannerAd() {
-    return new BannerAd(
-        adUnitId: Appid.ADMOB_AD_ID,
-        targetingInfo: targetingInfo,
-        size: AdSize.smartBanner,
-        listener: (MobileAdEvent event) {});
-  }
+  // BannerAd createBannerAd() {
+  //   return new BannerAd(
+  //       adUnitId: Appid.ADMOB_AD_ID,
+  //       targetingInfo: targetingInfo,
+  //       size: AdSize.smartBanner,
+  //       listener: (MobileAdEvent event) {});
+  // }
 
   /// to build a reside menu drawer build by library
   Widget buildItem(String msg, VoidCallback method) {
@@ -112,15 +112,15 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     //menucontroller for residemenu drawer.
     _menuController = new MenuController(vsync: this);
 
-    FirebaseAdMob.instance.initialize(appId: Appid.ADMOB_APP_ID);
-    bannerAd = createBannerAd()
-      ..load()
-      ..show();
+    // FirebaseAdMob.instance.initialize(appId: Appid.ADMOB_APP_ID);
+    // bannerAd = createBannerAd()
+    //   ..load()
+    //   ..show();
   }
 
   @override
   void dispose() {
-    bannerAd?.dispose();
+    // bannerAd?.dispose();
     super.dispose();
   }
 
@@ -150,9 +150,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   text: new TextSpan(children: <TextSpan>[
                     new TextSpan(
                         style: bodyStyle,
-                        text: 'Hello,  We are Indian coder, we develop android and ios apps, ' +
-                            " we are passionate about translating ideas " +
-                            ' into user-friendly apps.' +
+                        text: 'Hello,  We are Indian coder,'+
                             ' If you want to develop app for your business or anything feel free to contact us.'
                             ' We can build awesome apps in lowest price range.'
                             "\n\n"),

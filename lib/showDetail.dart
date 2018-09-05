@@ -160,7 +160,7 @@ class ShowDetailState extends State<ShowDetail> {
                   ),
           ]),
           SizedBox(
-            height: 30.0,
+            height: 20.0,
           ),
           RaisedButton(
             shape: BeveledRectangleBorder(borderRadius: new BorderRadius.circular(5.0)),
