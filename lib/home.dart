@@ -6,8 +6,8 @@ import 'package:toughest/textStyle.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher.dart' as urlLauncher;
 import 'package:flutter/gestures.dart';
-import 'package:firebase_admob/firebase_admob.dart';
-import 'appid.dart';
+// import 'package:firebase_admob/firebase_admob.dart';
+// import 'appid.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 
@@ -18,6 +18,7 @@ class Home extends StatefulWidget {
   }
 }
 
+//This class helps to create links, that we are using in about dialog.
 class _LinkTextSpan extends TextSpan {
   _LinkTextSpan({TextStyle style, String url, String text})
       : super(
@@ -35,7 +36,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   var data;
   FirebaseMessaging messaging = FirebaseMessaging();
 
-  ///Admob configuration.
+//I remove the ads from the app, its here just to understand how to configure it.const
+
+  //Admob configuration
   // static final MobileAdTargetingInfo targetingInfo = new MobileAdTargetingInfo(
   //   testDevices: <String>[],
   //   birthday: DateTime.now(),
@@ -44,7 +47,6 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   //   gender: MobileAdGender.unknown,
   //   keywords: <String>[
   //     'self-development',
-  //     'T-shirts',
   //     'Shoes',
   //     'shopping',
   //     'shopping offers',
@@ -124,6 +126,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     super.dispose();
   }
 
+///shows the about dialog.
   showAbout(BuildContext context) {
     final TextStyle linkStyle =
         Theme.of(context).textTheme.body2.copyWith(color: Colors.blue);
@@ -150,7 +153,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   text: new TextSpan(children: <TextSpan>[
                     new TextSpan(
                         style: bodyStyle,
-                        text: 'Hello,  We are Indian coder,'+
+                        text: 'Hello,  We are Indian coder,' +
                             ' If you want to develop app for your business or anything feel free to contact us.'
                             ' We can build awesome apps in lowest price range.'
                             "\n\n"),
@@ -211,21 +214,21 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         });
   }
 
-final myCraousal=Carousel(
-               
-                dotSize: 5.0,
-                dotIncreaseSize: 2.0,
-                 borderRadius: true,
-                 radius: Radius.circular(10.0),
-                 animationCurve: Curves.easeInOut,
-                 animationDuration: Duration(seconds: 2),
-                images: [
-                  AssetImage('assets/images/card1.png'),
-                  AssetImage('assets/images/card3.png'),
-                  AssetImage('assets/images/card4.png'),
-                  AssetImage('assets/images/card2.png'),
-                ],
-              );
+///creating a carousel using carousel pro library.
+  final myCraousal = Carousel(
+    dotSize: 5.0,
+    dotIncreaseSize: 2.0,
+    borderRadius: true,
+    radius: Radius.circular(10.0),
+    animationCurve: Curves.easeInOut,
+    animationDuration: Duration(seconds: 2),
+    images: [
+      AssetImage('assets/images/card1.png'),
+      AssetImage('assets/images/card3.png'),
+      AssetImage('assets/images/card4.png'),
+      AssetImage('assets/images/card2.png'),
+    ],
+  );
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -301,8 +304,8 @@ final myCraousal=Carousel(
           children: <Widget>[
             Container(
               padding: EdgeInsets.only(bottom: 5.0),
-              height:height/2.5 ,
-               child: myCraousal,
+              height: height / 2.5,
+              child: myCraousal,
             ),
             getListItems(Color(0xFFF1B136), Icons.person, 'Behavioural Based'),
             getListItems(Color(0xFF885F7F), Icons.wc, 'Communications Based'),
@@ -312,8 +315,6 @@ final myCraousal=Carousel(
             getListItems(Color(0xFFEF6363), Icons.help_outline, 'Brainteasers'),
           ],
         ),
-        
-       
       ),
     );
   }

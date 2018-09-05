@@ -34,6 +34,8 @@ class Detail extends StatelessWidget {
     Share.share("Answer this question\n\n" + title);
   }
 
+///Takes the local json file which is not included in this repository,
+///because that contains, Q/A data.
   _retrieveLocalData() async {
     return await rootBundle.loadString('assets/local.json');
   }
@@ -135,7 +137,7 @@ class Detail extends StatelessWidget {
   }
 }
 
-///these two class for json.
+//these two classes are here to help in decoding json data.
 class ItemList {
   List<Item> list;
   ItemList({this.list});

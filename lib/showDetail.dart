@@ -171,14 +171,8 @@ class ShowDetailState extends State<ShowDetail> {
             onPressed: () => share(widget.quest, widget.ans),
           ),
           SizedBox(height: 20.0),
-      
-        ],
-      ),
-      persistentFooterButtons: <Widget>[
-        Container(
-          height: 30.0,
-        )
       ],
-    );
+      ),
+     );
   }
 }

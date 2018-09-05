@@ -71,13 +71,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.14.5"
-  firebase_admob:
-    dependency: "direct main"
-    description:
-      name: firebase_admob
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.5.7"
   firebase_messaging:
     dependency: "direct main"
     description:
