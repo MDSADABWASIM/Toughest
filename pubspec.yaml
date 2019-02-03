@@ -56,11 +56,11 @@ flutter:
     - family: Acme
       fonts:
        
-        - asset:  assets/font/Acme-Regular.ttf
+        - asset:  assets/fonts/Acme-Regular.ttf
           weight: 600
     - family: Josefin Sans
       fonts:
-        - asset: assets/font/JosefinSans-Regular.ttf 
+        - asset: assets/fonts/JosefinSans-Regular.ttf 
           weight: 200    
 
   # An image asset can refer to one or more resolution-specific "variants", see

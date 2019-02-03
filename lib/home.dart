@@ -87,7 +87,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   }
 
   _launchgmail() async {
-    const url = 'mailto:indiancoder001@gmail.com';
+  const url = 'mailto:indiancoder001@gmail.com?subject=Feedback&body=Feedback for Toughest';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -97,20 +97,13 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
 
   @override
   void initState() {
+     super.initState();
     //notification configs.
     messaging.configure(
         onLaunch: (Map<String, dynamic> event) {},
         onMessage: (Map<String, dynamic> event) {},
         onResume: (Map<String, dynamic> event) {});
-    messaging.requestNotificationPermissions(const IosNotificationSettings(
-      sound: true,
-      alert: true,
-      badge: true,
-    ));
-    messaging.onIosSettingsRegistered
-        .listen((IosNotificationSettings setting) {});
-    messaging.getToken().then((msg) {});
-    super.initState();
+   
     //menucontroller for residemenu drawer.
     _menuController = new MenuController(vsync: this);
 
@@ -118,6 +111,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     // bannerAd = createBannerAd()
     //   ..load()
     //   ..show();
+
   }
 
   @override
@@ -161,25 +155,16 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       style: bodyStyle,
                       text: 'for Business Queries:' + "\n\n",
                     ),
+                    // new _LinkTextSpan(
+                    //   style: linkStyle,
+                    //   text: 'Send a Whatsapp message' + "\n\n",
+                    //   url: 'https://api.whatsapp.com/send?phone=+918210296495',
+                    // ),
                     new _LinkTextSpan(
-                      style: linkStyle,
-                      text: 'Send a Whatsapp message' + "\n\n",
-                      url: 'https://api.whatsapp.com/send?phone=+918210296495',
-                    ),
-                    new _LinkTextSpan(
-                      style: linkStyle,
-                      text: 'Send an E-mail' + "\n\n",
-                      url: 'mailto:indiancoder001@gmail.com',
-                    ),
-                    new _LinkTextSpan(
-                      style: linkStyle,
-                      text: 'Send a facebook message' + "\n\n",
-                      url: 'https://www.facebook.com/sadab.wasim.3',
-                    ),
-                    new _LinkTextSpan(
-                        style: linkStyle,
-                        text: 'Github repos' + "\n\n",
-                        url: 'https://github.com/MDSADABWASIM'),
+                    style: linkStyle,
+                    text: 'Send an E-mail' + "\n\n",
+                    url:'mailto:indiancoder001@gmail.com?subject=Toughest&body=For business queries'
+                  ),
                   ]))),
         ]);
   }
@@ -310,8 +295,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             getListItems(Color(0xFFF1B136), Icons.person, 'Behavioural Based'),
             getListItems(Color(0xFF885F7F), Icons.wc, 'Communications Based'),
             getListItems(Color(0xFF13B0A5), Icons.call_split, 'Opinion Based'),
-            getListItems(
-                Color(0xFFD0C490), Icons.assessment, 'Performance Based'),
+            getListItems(Color(0xFFD0C490), Icons.assessment, 'Performance Based'),
             getListItems(Color(0xFFEF6363), Icons.help_outline, 'Brainteasers'),
           ],
         ),
