@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart' as urlLauncher;
 import 'package:flutter/gestures.dart';
 // import 'package:firebase_admob/firebase_admob.dart';
 // import 'appid.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
+// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 
 class Home extends StatefulWidget {
@@ -34,7 +34,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   MenuController _menuController;
   // BannerAd bannerAd;
   var data;
-  FirebaseMessaging messaging = FirebaseMessaging();
+  // FirebaseMessaging messaging = FirebaseMessaging();
 
 //I remove the ads from the app, its here just to understand how to configure it.const
 
@@ -99,10 +99,10 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   void initState() {
      super.initState();
     //notification configs.
-    messaging.configure(
-        onLaunch: (Map<String, dynamic> event) {},
-        onMessage: (Map<String, dynamic> event) {},
-        onResume: (Map<String, dynamic> event) {});
+    // messaging.configure(
+    //     onLaunch: (Map<String, dynamic> event) {},
+    //     onMessage: (Map<String, dynamic> event) {},
+    //     onResume: (Map<String, dynamic> event) {});
    
     //menucontroller for residemenu drawer.
     _menuController = new MenuController(vsync: this);
@@ -214,6 +214,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       AssetImage('assets/images/card2.png'),
     ],
   );
+ 
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
