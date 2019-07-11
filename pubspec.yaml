@@ -17,9 +17,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   
   residemenu:
-  share: ^0.5.2
+  share: 
   url_launcher:
-  fluttie: ^0.2.3
+  # fluttie: 
   carousel_pro:
   
 dev_dependencies:

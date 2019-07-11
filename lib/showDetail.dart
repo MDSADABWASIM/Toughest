@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'dart:math';
-import 'package:fluttie/fluttie.dart';
+// import 'package:fluttie/fluttie.dart';
 import 'package:toughest/textStyle.dart';
 
 class ShowDetail extends StatefulWidget {
@@ -31,45 +31,45 @@ class ShowDetail extends StatefulWidget {
 }
 
 class ShowDetailState extends State<ShowDetail> {
-  FluttieAnimationController controller;
-  bool ready = false;
+//   FluttieAnimationController controller;
+//   bool ready = false;
 
-  @override
-  void initState() {
-    super.initState();
-    prepareAnimation();
-  }
+//   @override
+//   void initState() {
+//     super.initState();
+//     prepareAnimation();
+//   }
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
-  }
+//   @override
+//   void dispose() {
+//     controller.dispose();
+//     super.dispose();
+//   }
 
-///prepare for lottie animation.
-  prepareAnimation() async {
-    // Checks if the platform we're running on is supported by the animation plugin
-    bool canBeUsed = await Fluttie.isAvailable();
-    if (!canBeUsed) {
-      print("Animations are not supported on this platform");
-      return;
-    }
+// ///prepare for lottie animation.
+//   prepareAnimation() async {
+//     // Checks if the platform we're running on is supported by the animation plugin
+//     bool canBeUsed = await Fluttie.isAvailable();
+//     if (!canBeUsed) {
+//       print("Animations are not supported on this platform");
+//       return;
+//     }
 
-    var instance = new Fluttie();
-    var emojiComposition = await instance.loadAnimationFromAsset(
-      "assets/confetti.json", //Replace this string with your actual file
-    );
-    controller = await instance.prepareAnimation(emojiComposition,
-        duration: const Duration(seconds: 2),
-        repeatCount: const RepeatCount.nTimes(1),
-        repeatMode: RepeatMode.START_OVER);
-    if (mounted) {
-      setState(() {
-        ready = true; // The animations have been loaded, we're ready
-        controller.start(); //start our looped emoji animation
-      });
-    }
-  }
+//     var instance = new Fluttie();
+//     var emojiComposition = await instance.loadAnimationFromAsset(
+//       "assets/confetti.json", //Replace this string with your actual file
+//     );
+//     controller = await instance.prepareAnimation(emojiComposition,
+//         duration: const Duration(seconds: 2),
+//         repeatCount: const RepeatCount.nTimes(1),
+//         repeatMode: RepeatMode.START_OVER);
+//     if (mounted) {
+//       setState(() {
+//         ready = true; // The animations have been loaded, we're ready
+//         controller.start(); //start our looped emoji animation
+//       });
+//     }
+//   }
 
   share(String question, String answer) {
     Share.share("Q:" +
@@ -151,13 +151,13 @@ class ShowDetailState extends State<ShowDetail> {
                 style: Style.regularTextStyle,
               ),
             ),
-            ready
-                ? Center(
-                    child: FluttieAnimation(controller,
-                        size: Fluttie.kDefaultSize))
-                : Container(
-                    height: 1.0,
-                  ),
+            // ready
+            //     ? Center(
+            //         child: FluttieAnimation(controller,
+            //             size: Fluttie.kDefaultSize))
+            //     : Container(
+            //         height: 1.0,
+            //       ),
           ]),
           SizedBox(
             height: 20.0,

@@ -32,36 +32,8 @@ class _LinkTextSpan extends TextSpan {
 
 class HomeState extends State<Home> with TickerProviderStateMixin {
   MenuController _menuController;
-  // BannerAd bannerAd;
   var data;
-  // FirebaseMessaging messaging = FirebaseMessaging();
 
-//I remove the ads from the app, its here just to understand how to configure it.const
-
-  //Admob configuration
-  // static final MobileAdTargetingInfo targetingInfo = new MobileAdTargetingInfo(
-  //   testDevices: <String>[],
-  //   birthday: DateTime.now(),
-  //   childDirected: true,
-  //   designedForFamilies: true,
-  //   gender: MobileAdGender.unknown,
-  //   keywords: <String>[
-  //     'self-development',
-  //     'Shoes',
-  //     'shopping',
-  //     'shopping offers',
-  //     'low price ',
-  //     'cheapest shopping'
-  //   ],
-  // );
-
-  // BannerAd createBannerAd() {
-  //   return new BannerAd(
-  //       adUnitId: Appid.ADMOB_AD_ID,
-  //       targetingInfo: targetingInfo,
-  //       size: AdSize.smartBanner,
-  //       listener: (MobileAdEvent event) {});
-  // }
 
   /// to build a reside menu drawer build by library
   Widget buildItem(String msg, VoidCallback method) {
@@ -137,8 +109,6 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             image: AssetImage("assets/images/author.png"),
           ),
         ),
-        // applicationName: 'Toughest',
-        // applicationVersion: '1.0',
         children: <Widget>[
           new Padding(
               padding: const EdgeInsets.only(top: 5.0),
@@ -155,11 +125,6 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                       style: bodyStyle,
                       text: 'for Business Queries:' + "\n\n",
                     ),
-                    // new _LinkTextSpan(
-                    //   style: linkStyle,
-                    //   text: 'Send a Whatsapp message' + "\n\n",
-                    //   url: 'https://api.whatsapp.com/send?phone=+918210296495',
-                    // ),
                     new _LinkTextSpan(
                     style: linkStyle,
                     text: 'Send an E-mail' + "\n\n",
