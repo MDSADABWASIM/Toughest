@@ -117,9 +117,9 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                   text: new TextSpan(children: <TextSpan>[
                     new TextSpan(
                         style: bodyStyle,
-                        text: 'Hello,  We are Indian coder,' +
-                            ' If you want to develop app for your business or anything feel free to contact us.'
-                            ' We can build awesome apps in lowest price range.'
+                        text: 'Hello,  We are Indian coder, we have published many apps in play store till now,' +
+                            ' If you have any business/organisation/ideas and you want to build an app for it ,then  feel free to contact . I will build the app in the lowest price possible, and if your organisation is a non profit orgnisation then I will even do it for free. '
+                          
                             "\n\n"),
                     new TextSpan(
                       style: bodyStyle,
@@ -206,6 +206,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             child: new InkWell(
               child: ResideMenuItem(
                 title: 'Share the App',
+                 titleStyle: TextStyle(color: Colors.black),
                 icon: const Icon(Icons.share, color: Colors.black),
               ),
               onTap: () => _sharer(),
@@ -216,6 +217,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             child: new InkWell(
               child: ResideMenuItem(
                 title: 'Suggestions',
+                titleStyle: TextStyle(color: Colors.black),
                 icon: const Icon(Icons.bug_report, color: Colors.black),
               ),
               onTap: () => _launchgmail(),
