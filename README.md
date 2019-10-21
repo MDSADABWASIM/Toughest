@@ -1,6 +1,10 @@
 # toughest
 An app for interview preparation.
-Test the app [here](https://play.google.com/store/apps/details?id=tricky.questions)
+
+<a href='https://play.google.com/store/apps/details?id=tricky.questions'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png' height=90px/></a>
+
+
+
 ## Unique animations.
 ## More than 100 questions and answer.
 ## Good UI.
