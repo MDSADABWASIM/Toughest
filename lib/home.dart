@@ -6,9 +6,6 @@ import 'package:toughest/textStyle.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:url_launcher/url_launcher.dart' as urlLauncher;
 import 'package:flutter/gestures.dart';
-// import 'package:firebase_admob/firebase_admob.dart';
-// import 'appid.dart';
-// import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 
 class Home extends StatefulWidget {
@@ -70,27 +67,10 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   @override
   void initState() {
      super.initState();
-    //notification configs.
-    // messaging.configure(
-    //     onLaunch: (Map<String, dynamic> event) {},
-    //     onMessage: (Map<String, dynamic> event) {},
-    //     onResume: (Map<String, dynamic> event) {});
-   
-    //menucontroller for residemenu drawer.
     _menuController = new MenuController(vsync: this);
 
-    // FirebaseAdMob.instance.initialize(appId: Appid.ADMOB_APP_ID);
-    // bannerAd = createBannerAd()
-    //   ..load()
-    //   ..show();
-
   }
 
-  @override
-  void dispose() {
-    // bannerAd?.dispose();
-    super.dispose();
-  }
 
 ///shows the about dialog.
   showAbout(BuildContext context) {
