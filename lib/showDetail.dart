@@ -1,7 +1,8 @@
+import 'dart:async';
+import 'package:mark922_flutter_lottie/mark922_flutter_lottie.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'dart:math';
-// import 'package:fluttie/fluttie.dart';
 import 'package:toughest/textStyle.dart';
 
 class ShowDetail extends StatefulWidget {
@@ -31,45 +32,21 @@ class ShowDetail extends StatefulWidget {
 }
 
 class ShowDetailState extends State<ShowDetail> {
-//   FluttieAnimationController controller;
-//   bool ready = false;
+  LottieController controller2;
+  StreamController<double> newProgressStream;
 
-//   @override
-//   void initState() {
-//     super.initState();
-//     prepareAnimation();
-//   }
+  @override
+  void initState() {
+    super.initState();
+    newProgressStream=StreamController<double>();
+  }
 
-//   @override
-//   void dispose() {
-//     controller.dispose();
-//     super.dispose();
-//   }
+  @override
+  void dispose() {
+    newProgressStream.close();
+    super.dispose();
+  }
 
-// ///prepare for lottie animation.
-//   prepareAnimation() async {
-//     // Checks if the platform we're running on is supported by the animation plugin
-//     bool canBeUsed = await Fluttie.isAvailable();
-//     if (!canBeUsed) {
-//       print("Animations are not supported on this platform");
-//       return;
-//     }
-
-//     var instance = new Fluttie();
-//     var emojiComposition = await instance.loadAnimationFromAsset(
-//       "assets/confetti.json", //Replace this string with your actual file
-//     );
-//     controller = await instance.prepareAnimation(emojiComposition,
-//         duration: const Duration(seconds: 2),
-//         repeatCount: const RepeatCount.nTimes(1),
-//         repeatMode: RepeatMode.START_OVER);
-//     if (mounted) {
-//       setState(() {
-//         ready = true; // The animations have been loaded, we're ready
-//         controller.start(); //start our looped emoji animation
-//       });
-//     }
-//   }
 
   share(String question, String answer) {
     Share.share("Q:" +
@@ -82,7 +59,6 @@ class ShowDetailState extends State<ShowDetail> {
   }
 
   Widget _card = new Container(
-    // child: Text(text, style: TextStyle(fontSize: 15.0)),
     height: 170.0,
     margin: new EdgeInsets.all(8.0),
     decoration: new BoxDecoration(
@@ -124,6 +100,7 @@ class ShowDetailState extends State<ShowDetail> {
         title: Text('Answer'),
       ),
       body: ListView(
+        padding: EdgeInsets.all(8),
         children: <Widget>[
           Container(
             margin: EdgeInsets.all(8.0),
@@ -151,21 +128,28 @@ class ShowDetailState extends State<ShowDetail> {
                 style: Style.regularTextStyle,
               ),
             ),
-            // ready
-            //     ? Center(
-            //         child: FluttieAnimation(controller,
-            //             size: Fluttie.kDefaultSize))
-            //     : Container(
-            //         height: 1.0,
-            //       ),
+            Center(
+              child: Container(
+                  height: 300,
+                  width: 300,
+                  child: LottieView.fromFile(
+                          filePath: 'assets/confetti.json',
+                          autoPlay: true,
+                          loop: false,
+                          reverse: false,
+                          onViewCreated: onViewCreatedFile,
+                        ),
+                
+              ),
+            )
           ]),
           SizedBox(
             height: 20.0,
           ),
           RaisedButton(
-            shape: BeveledRectangleBorder(borderRadius: new BorderRadius.circular(5.0)),
+            shape: OutlineInputBorder(borderRadius: new BorderRadius.circular(5.0),borderSide: BorderSide.none),
             splashColor: const Color(0xff382151),
-            elevation: 20.0,
+            elevation: 10.0,
             child: Text("Share answer with your friends",style: Style.regularTextStyle,),
             color: Color(0xFF56cfdf),
             onPressed: () => share(widget.quest, widget.ans),
@@ -175,4 +159,12 @@ class ShowDetailState extends State<ShowDetail> {
       ),
      );
   }
+
+  void onViewCreatedFile(LottieController controller) {
+    this.controller2 = controller;
+    newProgressStream.stream.listen((double progress) {
+      this.controller2.setAnimationProgress(progress);
+    });
+  }
+
 }
