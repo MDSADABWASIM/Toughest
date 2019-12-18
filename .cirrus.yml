@@ -1,0 +1,6 @@
+container:
+  image: cirrusci/flutter:stable
+test_task:
+  pub_cache:
+    folder: ~/.pub-cache
+  test_script: flutter test
