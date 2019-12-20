@@ -1,3 +1,6 @@
+
+[![Build Status](https://api.cirrus-ci.com/github/MDSADABWASIM/Toughest.svg)](https://cirrus-ci.com/github/MDSADABWASIM/Toughest)
+
 # toughest
 An app for interview preparation.
 
