@@ -6,4 +6,5 @@ test_task:
   test_script: flutter test
 
 android_test_task:
-  script: bundle exec fastlane test
+  folder: android
+  script: fastlane test
