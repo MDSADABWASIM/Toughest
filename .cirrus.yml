@@ -4,4 +4,6 @@ test_task:
   pub_cache:
     folder: ~/.pub-cache
   test_script: flutter test
+
+android_test_task:
   script: bundle exec fastlane test
