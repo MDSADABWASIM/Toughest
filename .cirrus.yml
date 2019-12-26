@@ -8,9 +8,5 @@ test_task:
 widget_test_task:
   test_script: flutter test test/widget_test.dart
 
-integration_test_task:
-  test_script: flutter drive --target=test_driver/app.dart
-
-
 # android_test_task:
 #   script: fastlane test
