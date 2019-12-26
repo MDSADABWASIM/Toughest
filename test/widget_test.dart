@@ -1,26 +1,28 @@
-// This is a basic Flutter widget test.
-// To perform an interaction with a widget in your test, use the WidgetTester utility that Flutter
-// provides. For example, you can send tap and scroll gestures. You can also use WidgetTester to
-// find child widgets in the widget tree, read text, and verify that the values of widget properties
-// are correct.
-
+import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:toughest/showDetail.dart';
 
 void main() {
-  testWidgets('Cirrus ci testing', (WidgetTester tester) async {
+  testWidgets('Checking showDetail page', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    // await tester.pumpWidget(new MyApp());
-
-    // Verify that our counter starts at 0.
-    // expect(find.text('0'), findsOneWidget);
-    // expect(find.text('1'), findsNothing);
-
-    // // Tap the '+' icon and trigger a frame.
-    // await tester.tap(find.byIcon(Icons.add));
-    // await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsNothing);
+      await tester.pumpWidget(MaterialApp(home: ShowDetail(quest:'my question',ans: 'my answer')));
+      List<String> expectedText=['Question :','my question','Answer :','my answer'];
+      // Gets the created widgets
+      Iterable<Widget> listOfWidgets = tester.allWidgets;
+      checkIfTextsCreatedCorrectly(listOfWidgets,expectedText);
   });
+
+}
+
+  void checkIfTextsCreatedCorrectly(Iterable<Widget> listOfWidgets, List<String> expectedTexts) {
+  var textWidgetPosition = 0;
+  for(Widget widget in listOfWidgets) {
+    if(widget is Text) {
+      expect(widget.data, expectedTexts[textWidgetPosition]);
+      textWidgetPosition++;
+    }
+    if(textWidgetPosition==4){
+      break;
+    }
+  }
 }
