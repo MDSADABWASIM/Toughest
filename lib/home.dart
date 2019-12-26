@@ -68,7 +68,6 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   void initState() {
      super.initState();
     _menuController = new MenuController(vsync: this);
-
   }
 
 
@@ -117,6 +116,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   ///Lis-t of interview questions.
   Widget getListItems(Color color, IconData icon, String title) {
     return GestureDetector(
+      key: Key('item'),
         child: Container(
           color: color,
           height: 300.0,
