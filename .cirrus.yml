@@ -3,7 +3,9 @@ container:
 test_task:
   pub_cache:
     folder: ~/.pub-cache
-  test_script: flutter test
+  test_script: flutter test test/unit_test.dart
+  test_script: flutter test test/widget_test.dart
+  test_script: flutter drive --target=test_driver/app.dart
 
 
 # android_test_task:
