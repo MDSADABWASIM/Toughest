@@ -14,7 +14,7 @@ check_android_task:
         -avd test \
         -no-audio \
         -no-window
-  wait_for_emulator_script:
-    - adb wait-for-device
-    - adb shell input keyevent 82
+  # wait_for_emulator_script:
+  #   - adb wait-for-device
+  #   - adb shell input keyevent 82
   test_script: flutter drive --target=test_driver/app.dart
