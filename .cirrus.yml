@@ -10,5 +10,5 @@ widget_test_task:
 
 android_test_task:
   start_emulator_background_script: emulator -avd test -no-audio -no-window
-  wait_for_emulator_to_boot_script: adb wait-for-device
+  # wait_for_emulator_to_boot_script: adb wait-for-device
   test_script: flutter drive --target=test_driver/app.dart
