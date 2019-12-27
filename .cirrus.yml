@@ -23,9 +23,7 @@ check_android_task:
         -avd test \
         -no-audio \
         -no-window
-  assemble_script: ./gradlew assemble assembleAndroidTest
   wait_for_emulator_script:
     - adb wait-for-device
     - adb shell input keyevent 82
-  check_script: ./gradlew check connectedCheck
   test_script: flutter drive --target=test_driver/app.dart
