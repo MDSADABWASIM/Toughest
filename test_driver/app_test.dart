@@ -31,10 +31,22 @@ void main() {
       await Future<void>.delayed(Duration(milliseconds: milliseconds));
     }
 
+    test('Drag the banner', () async {
+      await delay(1000);
+      await driver.scroll(
+          find.byValueKey('banner'), -500, 0, Duration(milliseconds: 500));
+      print('banner scrolled successfully');
+    });
+
+    test('Scroll the items', () async {
+      await delay(1000);
+      await driver.scroll(itemFinder, 0, -500, Duration(milliseconds: 1000));
+      print('item scrolled successfully');
+    });
+
     test('Tap on the item', () async {
       await delay(1000);
       await driver.waitFor(find.text('TOUGHEST'));
-      await driver.tap(itemFinder);
     });
   });
 }
