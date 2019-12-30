@@ -1,8 +1,8 @@
 container:
   image: cirrusci/flutter:stable
 test_task:
-  pub_cache:
-    folder: ~/.pub-cache
+  # pub_cache:
+  #   folder: ~/.pub-cache
   test_script: flutter test test/unit_test.dart
 
 widget_test_task:
