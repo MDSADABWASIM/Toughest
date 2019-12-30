@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:toughest/detail.dart';
 import 'package:toughest/home.dart';
+import 'package:toughest/showDetail.dart';
 
 void main() {
   Home home;
@@ -13,7 +14,8 @@ void main() {
 
   group("Check Home page methods returns the widget", () {
     test("create list item", () {
-      Widget wid =home.createState().getListItems(Colors.blue, Icons.add, 'Add item');
+      Widget wid =
+          home.createState().getListItems(Colors.blue, Icons.add, 'Add item');
       expect(wid, isNot(null));
     });
 
@@ -31,6 +33,20 @@ void main() {
       expect(text, isA<String>());
       expect(text, equals('Communications Based'));
       expect(items, isNot(null));
+      print('Detail page text is: $text\n\n');
+    });
+  });
+
+  group('Checking showDetail page', () {
+    test('Create a showDetail page object', () {
+      ShowDetail showDetail = ShowDetail(quest: 'Testing question', ans: 'Testing answer');
+      String q = showDetail.quest;
+      String a = showDetail.ans;
+      expect(q, 'Testing question');
+      expect(a, 'Testing answer');
+      Widget card=showDetail.createState().cardDetail('testing');
+      expect(card,isNot(null));
+      print('Question is: $q\n\nAnswer is: $a\n\n');
     });
   });
 }
