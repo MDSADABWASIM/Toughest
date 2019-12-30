@@ -236,6 +236,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         body: ListView(
           children: <Widget>[
             Container(
+              key: Key('banner'),
               padding: EdgeInsets.only(bottom: 5.0),
               height: height / 2.5,
               child: myCraousal,
