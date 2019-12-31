@@ -31,7 +31,6 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   MenuController _menuController;
   var data;
 
-
   /// to build a reside menu drawer build by library
   Widget buildItem(String msg, VoidCallback method) {
     return new Material(
@@ -50,13 +49,14 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   _sharer() {
     Share.share(" TOUGHEST - Test your knowledge.\n" +
         "The app that will make you an amazing candidate for any job.\n"
-        "Are you ready?\n"
-        "Download it now\n"
-        "https://play.google.com/store/apps/details?id=tricky.questions");
+            "Are you ready?\n"
+            "Download it now\n"
+            "https://play.google.com/store/apps/details?id=tricky.questions");
   }
 
   _launchgmail() async {
-  const url = 'mailto:indiancoder001@gmail.com?subject=Feedback&body=Feedback for Toughest';
+    const url =
+        'mailto:indiancoder001@gmail.com?subject=Feedback&body=Feedback for Toughest';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -66,12 +66,11 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
 
   @override
   void initState() {
-     super.initState();
+    super.initState();
     _menuController = new MenuController(vsync: this);
   }
 
-
-///shows the about dialog.
+  ///shows the about dialog.
   showAbout(BuildContext context) {
     final TextStyle linkStyle =
         Theme.of(context).textTheme.body2.copyWith(color: Colors.blue);
@@ -98,17 +97,16 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                         style: bodyStyle,
                         text: 'Hello,  We are Indian coder, we have published many apps in play store till now,' +
                             ' If you have any business/organisation/ideas and you want to build an app for it ,then  feel free to contact . I will build the app in the lowest price possible, and if your organisation is a non profit orgnisation then I will even do it for free. '
-                          
-                            "\n\n"),
+                                "\n\n"),
                     new TextSpan(
                       style: bodyStyle,
                       text: 'for Business Queries:' + "\n\n",
                     ),
                     new _LinkTextSpan(
-                    style: linkStyle,
-                    text: 'Send an E-mail' + "\n\n",
-                    url:'mailto:indiancoder001@gmail.com?subject=Toughest&body=For business queries'
-                  ),
+                        style: linkStyle,
+                        text: 'Send an E-mail' + "\n\n",
+                        url:
+                            'mailto:indiancoder001@gmail.com?subject=Toughest&body=For business queries'),
                   ]))),
         ]);
   }
@@ -116,7 +114,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   ///Lis-t of interview questions.
   Widget getListItems(Color color, IconData icon, String title) {
     return GestureDetector(
-      key: Key('item'),
+        key: title == 'Behavioural Based' ? Key('item') : null,
         child: Container(
           color: color,
           height: 300.0,
@@ -136,7 +134,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             ],
           )),
         ),
-        onTap: () async {
+        onTap: () {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (context) => Detail(
                     title: title,
@@ -144,7 +142,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         });
   }
 
-///creating a carousel using carousel pro library.
+  ///creating a carousel using carousel pro library.
   final myCraousal = Carousel(
     dotSize: 5.0,
     dotIncreaseSize: 2.0,
@@ -159,7 +157,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
       AssetImage('assets/images/card2.png'),
     ],
   );
- 
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -186,7 +184,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             child: new InkWell(
               child: ResideMenuItem(
                 title: 'Share the App',
-                 titleStyle: TextStyle(color: Colors.black),
+                titleStyle: TextStyle(color: Colors.black),
                 icon: const Icon(Icons.share, color: Colors.black),
               ),
               onTap: () => _sharer(),
@@ -244,7 +242,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             getListItems(Color(0xFFF1B136), Icons.person, 'Behavioural Based'),
             getListItems(Color(0xFF885F7F), Icons.wc, 'Communications Based'),
             getListItems(Color(0xFF13B0A5), Icons.call_split, 'Opinion Based'),
-            getListItems(Color(0xFFD0C490), Icons.assessment, 'Performance Based'),
+            getListItems(
+                Color(0xFFD0C490), Icons.assessment, 'Performance Based'),
             getListItems(Color(0xFFEF6363), Icons.help_outline, 'Brainteasers'),
           ],
         ),
