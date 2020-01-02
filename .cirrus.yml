@@ -56,11 +56,11 @@ android_deploy_task:
   # create_google_services_json_script:
   #   - cd android/app
   #   - echo ${GOOGLE_SERVICES_JSON} | base64 --decode > google-services.json
-  # set_version_script:
-  #   - cd android/
-  #   - U=$(expr $(date +%s) / 10) # increase by 1 in each 10 seconds
-  #   - echo "versionCode=${U}" >> version.properties
-  #   - echo "versionName=$(cat ../version.txt)" >> version.properties
+  set_version_script:
+    - cd android/
+    - U=$(expr $(date +%s) / 10) # increase by 1 in each 10 seconds
+    - echo "versionCode=${U}" >> version.properties
+    - echo "versionName=$(cat ../version.txt)" >> version.properties
   deploy_script:
     # - flutter build apk --release
     - cd android/
