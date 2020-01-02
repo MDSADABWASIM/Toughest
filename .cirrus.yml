@@ -43,9 +43,9 @@ android_deploy_task:
   gradle_cache:
     folder: ${HOME}/.gradle
 
-  # create_local_properties_script:
-  #   - cd android/
-  #   - echo 'flutter.sdk=/home/cirrus/sdks/flutter' > local.properties
+  create_local_properties_script:
+    - cd android/
+    - echo 'flutter.sdk=/home/cirrus/sdks/flutter' > local.properties
   # create_key_properties_script:
   #   - cd android/
   #   - echo ${PUBLISH_KEY_JKS_BASE64} | base64 --decode > ${PUBLISH_KEY_PASS_PATH}
