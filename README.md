@@ -1,6 +1,10 @@
 
 [![Build Status](https://api.cirrus-ci.com/github/MDSADABWASIM/Toughest.svg)](https://cirrus-ci.com/github/MDSADABWASIM/Toughest)
 
+[![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/fastlane/fastlane/blob/master/LICENSE)
+
+[![Twitter: @sadab_wasim](https://img.shields.io/badge/contact-@sadab_wasim-blue.svg?style=flat)](https://twitter.com/sadab_wasim)
+
 # toughest
 An app for interview preparation.
 
