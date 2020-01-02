@@ -18,3 +18,124 @@ widget_test_task:
 #     - adb wait-for-device
 #     - adb shell input keyevent 82
 #   test_script: flutter drive --target=test_driver/app.dart
+
+
+
+android_deploy_task:
+  depends_on:
+    - test
+  only_if: $BRANCH == "master"
+
+  # env:
+    # PUBLISH_KEY_PASS_PATH: "/tmp/publish-key.jks"
+    # PUBLISH_KEY_JKS_BASE64: ENCRYPTED[af7ca88a45aaf6df8433eca3a115b7926f43c3490ee7741c367bc3e19f4e738d9238de3778f27d8c11f1ec2344a39a1a]
+    # KEYPASS: ENCRYPTED[d1fc937a750f39ef2a0c786b3a74267684feb706cfa4716d7a5ae2fa1fbef161d5bf418dec600f66678638322a1a7c49]
+    # SERVICE_ACCOUNT_JSON: ENCRYPTED[3235d57e7733ef895f07b285daeaeb47b87cd58d16111060748411d27858d353c5822ac27a5095d3234b31266d0ed5f1]
+    # GOOGLE_SERVICES_JSON: ENCRYPTED[aa6aaa6ce6fe9ce640e3d4b9b7cd46da38c4551617108e22d48e7bf44397766df2ce3906c5a47b138edc1492cc6524fd]
+
+  pub_cache:
+    folder: ~/.pub-cache
+    fingerprint_script: cat pubspec.lock
+    populate_script: flutter packages get
+  vendor_cache:
+    folder: android/vendor/bundle
+    fingerprint_script: cat android/Gemfile.lock
+    populate_script: cd android/; bundle install --path vendor/bundle
+  # cache everything for simplicity
+  gradle_cache:
+    folder: ${HOME}/.gradle
+
+  # create_local_properties_script:
+  #   - cd android/
+  #   - echo 'flutter.sdk=/home/cirrus/sdks/flutter' > local.properties
+  # create_key_properties_script:
+  #   - cd android/
+  #   - echo ${PUBLISH_KEY_JKS_BASE64} | base64 --decode > ${PUBLISH_KEY_PASS_PATH}
+  #   - printf "storePassword=${KEYPASS}\nkeyPassword=${KEYPASS}\nkeyAlias=key\nstoreFile=${PUBLISH_KEY_PASS_PATH}" > key.properties
+  #   - echo ${SERVICE_ACCOUNT_JSON} > /tmp/service_account.json
+  # create_google_services_json_script:
+  #   - cd android/app
+  #   - echo ${GOOGLE_SERVICES_JSON} | base64 --decode > google-services.json
+  # set_version_script:
+  #   - cd android/
+  #   - U=$(expr $(date +%s) / 10) # increase by 1 in each 10 seconds
+  #   - echo "versionCode=${U}" >> version.properties
+  #   - echo "versionName=$(cat ../version.txt)" >> version.properties
+  deploy_script:
+    - flutter build apk --release
+    - cd android/
+    - mv _fastlane fastlane
+    - bundle install --path vendor/bundle
+    - bundle exec fastlane test
+
+
+# ios_deploy_task:
+#   depends_on:
+#     - test
+#   only_if: $BRANCH == "master"
+
+#   osx_instance:
+#     image: high-sierra-xcode-9.4.1
+
+#   env:
+#     CERTIFICATIONS_REPO_URL: ENCRYPTED[e2c52e00b31de608243bb6fff1d485ac03201b9d741e1a9db6d648706b2888c3dbadd65475b88edc36bc90e92349da69]
+#     ID_RSA: ENCRYPTED[cae21f7ae1b776cf6ca4b65c254273ec330a8ebdeab7566a59c2f78a298d024936eb13e525f634e9ede117a8e2c5b2d7]
+#     FASTLANE_USER: ENCRYPTED[3b3290d81ae6d82ae7ea966ba122df56b9d0d73bb1ccb902209a076007b78bfb991bdd3dc7f423bce3d21e7c54d92d2f]
+#     FASTLANE_PASSWORD: ENCRYPTED[9e460a5075e0141db560621db6dc4c84c301f2dac74b04c0b785fefb90d82feb67bb3929064eb53c62059bc46d3d2481]
+#     ITC_TEAM_ID: ENCRYPTED[7b1de9473db9fff29e3de205507348a9fc1f154eedbef40da13f48f169dae27473676ba9598f8ae0870bc9f9ed8872a4]
+#     TEAM_ID: ENCRYPTED[6bbac9dbc4c50e8d47d8bd41284316f0c2b2e92abc7df107ab5675e63eb790923e3c35cc65cea7f6793edeb00b046a51]
+#     KNOWN_HOSTS: ENCRYPTED[f8b02e97c8098476d741fd45756b30d532f0665efa97a6b90149925840256846af32dc62b1fc46bf2c7cb878c07daf43]
+#     MATCH_PASSWORD: ENCRYPTED[d1fc937a750f39ef2a0c786b3a74267684feb706cfa4716d7a5ae2fa1fbef161d5bf418dec600f66678638322a1a7c49]
+#     GOOGLE_SERVICES_PLIST: ENCRYPTED[2f73942b9560f7598f7f96f1f78965f31052b58ab8846862b37c2bfd683db801496adae4e36d1ce81ad9fec7c5a7c490]
+#     LC_ALL: en_US.UTF-8
+#     LANG: en_US.UTF-8
+#     FLUTTER_SDK_URL: "https://storage.googleapis.com/flutter_infra/releases/beta/macos/flutter_macos_v0.5.1-beta.zip"
+#     FLUTTER_SDK_PATH: "/tmp/_flutter_sdk"
+#     PATH: "${FLUTTER_SDK_PATH}/bin:${PATH}"
+#     MATCH_KEYCHAIN_NAME: "keychain"
+#     MATCH_KEYCHAIN_PASSWORD: "hoge"
+
+#   # no fingerprint_script
+#   flutter_sdk_cache:
+#     folder: ${FLUTTER_SDK_PATH}
+#     fingerprint_script: echo ${FLUTTER_SDK_URL}
+#     populate_script:
+#       - curl -o /tmp/flutter-sdk.zip ${FLUTTER_SDK_URL}
+#       - unzip -qq /tmp/flutter-sdk.zip -d /tmp/
+#       - mv /tmp/flutter ${FLUTTER_SDK_PATH}
+#   vendor_cache:
+#     folder: ios/vendor/bundle
+#     fingerprint_script: cat ios/Gemfile.lock
+#     populate_script: cd ios/; bundle install --path vendor/bundle
+
+#   create_fastlane_settings_script:
+#     - cd ios/
+#     - mv _fastlane fastlane
+#     - cd fastlane
+#     - printf "apple_id(\"${FASTLANE_USER}\")\nitc_team_id(\"${ITC_TEAM_ID}\")\nteam_id(\"${TEAM_ID}\")" >> Appfile
+#     - printf "git_url(\"${CERTIFICATIONS_REPO_URL}\")\ntype(\"appstore\")" > Matchfile
+#   change_ssh_config_for_match_script:
+#     - mkdir -p ~/.ssh
+#     - cd ~/.ssh
+#     - echo ${ID_RSA} | base64 --decode > id_rsa
+#     - chmod 600 id_rsa
+#     - echo ${KNOWN_HOSTS} > known_hosts
+#     - eval `ssh-agent -s`
+#     - ssh-add ./id_rsa
+#   create_keychain_script:
+#     - cd ios/
+#     - bundle install --path vendor/bundle
+#     - bundle exec fastlane create_temporary_keychain
+#   fastlane_match_script:
+#     - cd ios/
+#     - bundle install --path vendor/bundle
+#     - bundle exec fastlane match appstore --readonly
+#   create_google_services_plist_script:
+#     - cd ios/Runner
+#     - echo ${GOOGLE_SERVICES_PLIST} | base64 --decode > GoogleService-Info.plist
+#   deploy_script:
+#     - export CFBundleVersion=`date +%s` # for build code
+#     - export CFBundleShortVersionString=`cat ./version.txt` # for version string
+#     - flutter build ios --release --no-codesign
+#     - cd ios/
+#     - bundle exec fastlane beta
