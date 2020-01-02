@@ -62,7 +62,7 @@ android_deploy_task:
   #   - echo "versionCode=${U}" >> version.properties
   #   - echo "versionName=$(cat ../version.txt)" >> version.properties
   deploy_script:
-    - flutter build apk --release
+    # - flutter build apk --release
     - cd android/
     - mv _fastlane fastlane
     - bundle install --path vendor/bundle
