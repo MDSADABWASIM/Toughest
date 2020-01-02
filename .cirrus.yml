@@ -64,7 +64,7 @@ android_deploy_task:
   deploy_script:
     # - flutter build apk --release
     - cd android/
-    - mv _fastlane fastlane
+    # - mv _fastlane fastlane
     - bundle install --path vendor/bundle
     - bundle exec fastlane test
 
