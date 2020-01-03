@@ -12,7 +12,7 @@ integration_test_task:
     EMULATOR_API_LEVEL: 28
     ANDROID_ABI: "default;x86"
   container:
-    image: cirrusci/flutter:$DOCKER_VERSION
+    image: cirrusci/flutter:stable
     cpu: 4
     memory: 10G
     kvm: true
