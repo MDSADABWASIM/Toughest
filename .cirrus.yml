@@ -1,28 +1,40 @@
 container:
   image: cirrusci/flutter:stable
-test_task:
+  
+unit_test_task:
   test_script: flutter test test/unit_test.dart
 
 widget_test_task:
   test_script: flutter test test/widget_test.dart
 
-# check_android_task:
-#   start_emulator_background_script: >
-#     $ANDROID_HOME/emulator/emulator \
-#         -avd test \
-#         -no-audio \
-#         -no-window
-#   wait_for_emulator_script:
-#     - adb wait-for-device
-#     - adb shell input keyevent 82
-#   test_script: flutter drive --target=test_driver/app.dart
+integration_test_task:
+  env:
+    EMULATOR_API_LEVEL: 28
+    ANDROID_ABI: "default;x86"
+  container:
+    image: cirrusci/flutter:$DOCKER_VERSION
+    cpu: 4
+    memory: 10G
+    kvm: true
+  allow_failures: $app_arch == "mvu" || $app_arch == "redurx"
+  fix_kvm_script: sudo chown cirrus:cirrus /dev/kvm
+  install_images_script: sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI"
+  create_device_script:
+      echo no | avdmanager create avd --force -n test -k "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI"
+  start_emulator_background_script:
+      $ANDROID_HOME/emulator/emulator-headless -verbose -avd test -no-audio -no-window
+  pub_cache:
+    folder: ~/.pub-cache
+  wait_for_emulator_script:
+      - ./scripts/android-wait-for-emulator.sh
+  test_script: flutter drive --target=test_driver/app.dart
 
 
 
-android_deploy_task:
-  depends_on:
-    - test
-  only_if: $BRANCH == "master"
+# android_deploy_task:
+#   depends_on:
+#     - test
+#   only_if: $BRANCH == "master"
 
   # env:
     # PUBLISH_KEY_PASS_PATH: "/tmp/publish-key.jks"
@@ -31,21 +43,21 @@ android_deploy_task:
     # SERVICE_ACCOUNT_JSON: ENCRYPTED[3235d57e7733ef895f07b285daeaeb47b87cd58d16111060748411d27858d353c5822ac27a5095d3234b31266d0ed5f1]
     # GOOGLE_SERVICES_JSON: ENCRYPTED[aa6aaa6ce6fe9ce640e3d4b9b7cd46da38c4551617108e22d48e7bf44397766df2ce3906c5a47b138edc1492cc6524fd]
 
-  pub_cache:
-    folder: ~/.pub-cache
-    fingerprint_script: cat pubspec.lock
-    populate_script: flutter packages get
-  vendor_cache:
-    folder: android/vendor/bundle
-    fingerprint_script: cat android/Gemfile.lock
-    populate_script: cd android/; bundle install --path vendor/bundle
-  # cache everything for simplicity
-  gradle_cache:
-    folder: ${HOME}/.gradle
+  # pub_cache:
+  #   folder: ~/.pub-cache
+  #   fingerprint_script: cat pubspec.lock
+  #   populate_script: flutter packages get
+  # vendor_cache:
+  #   folder: android/vendor/bundle
+  #   fingerprint_script: cat android/Gemfile.lock
+  #   populate_script: cd android/; bundle install --path vendor/bundle
+  # # cache everything for simplicity
+  # gradle_cache:
+  #   folder: ${HOME}/.gradle
 
-  create_local_properties_script:
-    - cd android/
-    - echo 'flutter.sdk=/home/cirrus/sdks/flutter' > local.properties
+  # create_local_properties_script:
+  #   - cd android/
+  #   - echo 'flutter.sdk=/home/cirrus/sdks/flutter' > local.properties
   # create_key_properties_script:
   #   - cd android/
   #   - echo ${PUBLISH_KEY_JKS_BASE64} | base64 --decode > ${PUBLISH_KEY_PASS_PATH}
@@ -66,10 +78,6 @@ android_deploy_task:
   #   - bundle install --path vendor/bundle
   #   - bundle exec fastlane test
 
-  script:
-    - cd android/
-    - bundle install --path vendor/bundle
-    - bundle exec fastlane test
 
 
 # ios_deploy_task:
