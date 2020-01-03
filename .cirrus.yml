@@ -16,7 +16,6 @@ integration_test_task:
     cpu: 4
     memory: 10G
     kvm: true
-  allow_failures: $app_arch == "mvu" || $app_arch == "redurx"
   fix_kvm_script: sudo chown cirrus:cirrus /dev/kvm
   install_images_script: sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI"
   create_device_script:
