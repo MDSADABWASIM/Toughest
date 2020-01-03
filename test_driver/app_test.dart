@@ -40,7 +40,7 @@ void main() {
 
     test('Scroll the items', () async {
       await delay(1000);
-      final timeline= await driver.traceAction(() async{
+      final timeline = await driver.traceAction(() async {
         await driver.scroll(itemFinder, 0, -500, Duration(milliseconds: 1000));
       });
       // Convert the Timeline into a TimelineSummary that's easier to
@@ -50,10 +50,6 @@ void main() {
       // Then, save the summary to disk.
       summary.writeSummaryToFile('scrolling_summary', pretty: true);
 
-      // Optionally, write the entire timeline to disk in a json format.
-      // This file can be opened in the Chrome browser's tracing tools
-      // found by navigating to chrome://tracing.
-      summary.writeTimelineToFile('scrolling_timeline', pretty: true);
       print('item scrolled successfully');
     });
 

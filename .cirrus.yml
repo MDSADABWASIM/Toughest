@@ -24,6 +24,7 @@ integration_test_task:
       $ANDROID_HOME/emulator/emulator-headless -verbose -avd test -no-audio -no-window
   pub_cache:
     folder: ~/.pub-cache
+    #Ran chmod 755 ./scripts/android-wait-for-emulator.sh in terminal to give this script permission.
   wait_for_emulator_script:
       - ./scripts/android-wait-for-emulator.sh
   test_script: flutter drive --target=test_driver/app.dart
