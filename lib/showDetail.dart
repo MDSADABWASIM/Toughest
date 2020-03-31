@@ -18,11 +18,6 @@ class ShowDetail extends StatefulWidget {
     Colors.pink,
     Colors.purple,
     Colors.blue,
-    Color(0xFFF1B136),
-    Color(0xFF885F7F),
-    Color(0xFF13B0A5),
-    Color(0xFFD0C490),
-    Color(0xFFEF6363),
   ];
 
   @override
@@ -59,7 +54,7 @@ class ShowDetailState extends State<ShowDetail> {
   }
 
   Widget _card = new Container(
-    height: 170.0,
+    height: 150.0,
     margin: new EdgeInsets.all(8.0),
     decoration: new BoxDecoration(
       color: ShowDetail._colors[
@@ -128,20 +123,6 @@ class ShowDetailState extends State<ShowDetail> {
                 style: Style.regularTextStyle,
               ),
             ),
-            Center(
-              child: Container(
-                  height: 300,
-                  width: 300,
-                  child: LottieView.fromFile(
-                          filePath: 'assets/confetti.json',
-                          autoPlay: true,
-                          loop: false,
-                          reverse: false,
-                          onViewCreated: onViewCreatedFile,
-                        ),
-                
-              ),
-            )
           ]),
           SizedBox(
             height: 20.0,

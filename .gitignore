@@ -20,3 +20,5 @@ ios/fastlane/metadata/trade_representative_contact_information
 build/
 
 .flutter-plugins
+.idea/workspace.xml
+.idea
