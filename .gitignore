@@ -22,7 +22,7 @@ build/
 .flutter-plugins
 .idea/workspace.xml
 .idea/
-test_driver
+
 
 # User-specific configurations
 .idea/libraries/
@@ -39,4 +39,3 @@ test_driver
 *.im
 
 
-test_driver/toughest_android.iml
