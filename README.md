@@ -17,4 +17,4 @@ An app for interview preparation.
 
 
 
-**Made with** :heart: **and GitHub**
+**Made with** :heart: **and Flutter**
