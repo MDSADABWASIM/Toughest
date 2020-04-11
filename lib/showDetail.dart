@@ -8,6 +8,7 @@ import 'package:toughest/textStyle.dart';
 class ShowDetail extends StatefulWidget {
   final String quest, ans;
   static var randomNumber = Random();
+
   ShowDetail({this.quest, this.ans});
 
   static final List<Color> _colors = [
@@ -18,16 +19,11 @@ class ShowDetail extends StatefulWidget {
     Colors.pink,
     Colors.purple,
     Colors.blue,
-    Color(0xFFF1B136),
-    Color(0xFF885F7F),
-    Color(0xFF13B0A5),
-    Color(0xFFD0C490),
-    Color(0xFFEF6363),
   ];
 
   @override
   ShowDetailState createState() {
-    return new ShowDetailState();
+    return ShowDetailState();
   }
 }
 
@@ -38,7 +34,7 @@ class ShowDetailState extends State<ShowDetail> {
   @override
   void initState() {
     super.initState();
-    newProgressStream=StreamController<double>();
+    newProgressStream = StreamController<double>();
   }
 
   @override
@@ -46,7 +42,6 @@ class ShowDetailState extends State<ShowDetail> {
     newProgressStream.close();
     super.dispose();
   }
-
 
   share(String question, String answer) {
     Share.share("Q:" +
@@ -58,31 +53,26 @@ class ShowDetailState extends State<ShowDetail> {
         "https://play.google.com/store/apps/details?id=tricky.questions");
   }
 
-  Widget _card = new Container(
-    height: 170.0,
-    margin: new EdgeInsets.all(8.0),
-    decoration: new BoxDecoration(
-      color: ShowDetail._colors[
-          ShowDetail.randomNumber.nextInt(100) % ShowDetail._colors.length],
-      shape: BoxShape.rectangle,
-      borderRadius: new BorderRadius.circular(8.0),
-      boxShadow: <BoxShadow>[
-        new BoxShadow(
-          color: Colors.black12,
-          blurRadius: 10.0,
-          offset: new Offset(0.0, 10.0),
-        ),
-      ],
-    ),
-  );
 
-///add details in card.
+  ///add details in card.
   Widget cardDetail(String text) {
     return Stack(
       children: <Widget>[
-        _card,
         Container(
-            margin: EdgeInsets.all(20.0),
+            padding: EdgeInsets.symmetric(vertical: 15,horizontal: 10),
+            decoration: BoxDecoration(
+              boxShadow: <BoxShadow>[
+                BoxShadow(
+                  color: Colors.black12,
+                  blurRadius: 10.0,
+                  offset: Offset(0.0, 10.0),
+                ),
+              ],
+              borderRadius: BorderRadius.circular(9.0),
+              color: ShowDetail._colors[ShowDetail.randomNumber.nextInt(100) %
+                  ShowDetail._colors.length],
+            ),
+            margin: EdgeInsets.all(8.0),
             child: Text(
               text,
               style: Style.commonTextStyle,
@@ -96,7 +86,7 @@ class ShowDetailState extends State<ShowDetail> {
     return Scaffold(
       appBar: AppBar(
         elevation: 10.0,
-        backgroundColor: new Color(0xFFC67A7D),
+        backgroundColor: Color(0xFFC67A7D),
         title: Text('Answer'),
       ),
       body: ListView(
@@ -111,7 +101,7 @@ class ShowDetailState extends State<ShowDetail> {
           ),
           cardDetail(widget.quest),
           SizedBox(
-            height: 30.0,
+            height: 10.0,
           ),
           Container(
             margin: const EdgeInsets.all(8.0),
@@ -128,36 +118,34 @@ class ShowDetailState extends State<ShowDetail> {
                 style: Style.regularTextStyle,
               ),
             ),
-            Center(
-              child: Container(
-                  height: 300,
-                  width: 300,
-                  child: LottieView.fromFile(
-                          filePath: 'assets/confetti.json',
-                          autoPlay: true,
-                          loop: false,
-                          reverse: false,
-                          onViewCreated: onViewCreatedFile,
-                        ),
-                
-              ),
-            )
           ]),
           SizedBox(
             height: 20.0,
           ),
           RaisedButton(
-            shape: OutlineInputBorder(borderRadius: new BorderRadius.circular(5.0),borderSide: BorderSide.none),
+            shape: OutlineInputBorder(
+                borderRadius: new BorderRadius.circular(5.0),
+                borderSide: BorderSide.none),
             splashColor: const Color(0xff382151),
             elevation: 10.0,
-            child: Text("Share answer with your friends",style: Style.regularTextStyle,),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  "Share answer with your friends",
+                  style: Style.regularTextStyle,
+                ),
+                SizedBox(width: 5,),
+                Icon(Icons.share),
+              ],
+            ),
             color: Color(0xFF56cfdf),
             onPressed: () => share(widget.quest, widget.ans),
           ),
           SizedBox(height: 20.0),
-      ],
+        ],
       ),
-     );
+    );
   }
 
   void onViewCreatedFile(LottieController controller) {
@@ -166,5 +154,4 @@ class ShowDetailState extends State<ShowDetail> {
       this.controller2.setAnimationProgress(progress);
     });
   }
-
 }

@@ -96,7 +96,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
                     new TextSpan(
                         style: bodyStyle,
                         text: 'Hello,  We are Indian coder, we have published many apps in play store till now,' +
-                            ' If you have any business/organisation/ideas and you want to build an app for it ,then  feel free to contact . I will build the app in the lowest price possible, and if your organisation is a non profit orgnisation then I will even do it for free. '
+                            ' If you have any business/organisation/ideas and you want to build an app for it ,then  feel free to contact . I will build the app in the lowest price possible, and if your organisation is a non profit organisation then I will even do it for free. '
                                 "\n\n"),
                     new TextSpan(
                       style: bodyStyle,
@@ -116,7 +116,11 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     return GestureDetector(
         key: title == 'Behavioural Based' ? Key('item') : null,
         child: Container(
-          color: color,
+          margin: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(30),
+            color: color
+          ),
           height: 300.0,
           child: Center(
               child: Column(

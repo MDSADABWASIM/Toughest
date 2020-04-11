@@ -80,23 +80,30 @@ class Detail extends StatelessWidget {
             quest = snapshot.data[i].question;
             ans = snapshot.data[i].answer;
             return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: ListTile(
-                title: Text(
-                  quest,
-                  style: Style.commonTextStyle,
-                ),
-                trailing: IconButton(
-                  icon: Icon(Icons.share, color: Color(0xFF56cfdf)),
-                  iconSize: 18.0,
-                  onPressed: () => share(quest),
-                ),
-                onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            ShowDetail(quest: quest, ans: ans),
-                      ),
+              padding: const EdgeInsets.symmetric(vertical: 4.0),
+              child: Column(
+                children: <Widget>[
+                  ListTile(
+                    title: Text(
+                      quest,
+                      style: Style.commonTextStyle,
                     ),
+                    trailing: IconButton(
+                      icon: Icon(Icons.share, color: Color(0xFF56cfdf)),
+                      iconSize: 18.0,
+                      onPressed: () => share(quest),
+                    ),
+                    onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) =>
+                                ShowDetail(quest: quest, ans: ans),
+                          ),
+                        ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.only(left: 15,right: 15),
+                      child: Divider(color: Colors.white,)),
+                ],
               ),
             );
           },
