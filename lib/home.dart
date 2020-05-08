@@ -188,7 +188,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             child: new InkWell(
               child: ResideMenuItem(
                 title: 'Share the App',
-                titleStyle: TextStyle(color: Colors.black),
+                titleStyle: TextStyle(color: Colors.black,fontSize: 20.0,backgroundColor: Colors.white),
                 icon: const Icon(Icons.share, color: Colors.black),
               ),
               onTap: () => _sharer(),
@@ -199,7 +199,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
             child: new InkWell(
               child: ResideMenuItem(
                 title: 'Suggestions',
-                titleStyle: TextStyle(color: Colors.black),
+                titleStyle: TextStyle(color: Colors.black,fontSize: 20.0,backgroundColor: Colors.white),
                 icon: const Icon(Icons.bug_report, color: Colors.black),
               ),
               onTap: () => _launchgmail(),
