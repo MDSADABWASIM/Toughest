@@ -183,6 +183,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
         ),
         children: <Widget>[
           ///I have to make these drawer list widgets manually cause it is containing different methods.
+//           added Changes
           new Material(
             color: Colors.transparent,
             child: new InkWell(
