@@ -2,43 +2,38 @@ name: toughest
 description: A new Flutter project.
 version: 2.0.2+4
 
+environment:
+  sdk: ">=2.17.1 <3.0.0"
+
 dependencies:
   flutter:
     sdk: flutter
-  mark922_flutter_lottie: ^0.2.5
-  residemenu:
-  share: 
-  url_launcher:
-  carousel_pro:
-  
-  
+  lottie: ^1.4.2
+  share_plus: ^4.0.10+1
+  shrink_sidemenu: ^2.0.0+2-null-safety
+  carousel_slider: ^4.1.1
+  url_launcher: ^6.1.5
+
 dev_dependencies:
   flutter_driver:
     sdk: flutter
-  test:
-  mockito:
+  mockito: null
+  test: null
 
 flutter:
   uses-material-design: true
 
   assets:
-     - assets/images/author.png
-     - assets/images/background.jpg
-     - assets/images/icon.jpg
-     - assets/images/card1.png
-     - assets/images/card2.png
-     - assets/images/card3.png
-     - assets/images/card4.png
-     - assets/local.json
-     - assets/confetti.json
-     
+    - assets/images/
+    - assets/local.json
+    - assets/confetti.json
 
   fonts:
     - family: Acme
       fonts:
-        - asset:  assets/font/Acme-Regular.ttf
+        - asset: assets/font/Acme-Regular.ttf
           weight: 600
     - family: Josefin Sans
       fonts:
-        - asset: assets/font/JosefinSans-Regular.ttf 
-          weight: 200    
+        - asset: assets/font/JosefinSans-Regular.ttf
+          weight: 200

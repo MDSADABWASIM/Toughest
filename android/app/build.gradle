@@ -29,7 +29,7 @@ def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 32
 
     lintOptions {
         disable 'InvalidPackage'
@@ -37,10 +37,9 @@ android {
 
     defaultConfig {
         multiDexEnabled true
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "tricky.questions"
         minSdkVersion 16
-        targetSdkVersion 28
+        targetSdkVersion 32
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
