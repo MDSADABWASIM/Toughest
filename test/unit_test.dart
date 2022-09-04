@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:toughest/detail.dart';
-import 'package:toughest/home.dart';
-import 'package:toughest/showDetail.dart';
+import 'package:toughest/ui/detail.dart';
+import 'package:toughest/ui/home.dart';
+import 'package:toughest/ui/showDetail.dart';
 
 void main() {
-  Home home;
-  VoidCallback call;
+  late Home home;
   setUp(() {
     home = Home();
   });
@@ -17,11 +16,6 @@ void main() {
       Widget wid =
           home.createState().getListItems(Colors.blue, Icons.add, 'Add item');
       expect(wid, isNot(null));
-    });
-
-    test("create homePage item", () {
-      Widget item = home.createState().buildItem('maths', call);
-      expect(item, isNot(null));
     });
   });
 
@@ -39,13 +33,14 @@ void main() {
 
   group('Checking showDetail page', () {
     test('Create a showDetail page object', () {
-      ShowDetail showDetail = ShowDetail(quest: 'Testing question', ans: 'Testing answer');
+      ShowDetail showDetail =
+          ShowDetail(quest: 'Testing question', ans: 'Testing answer');
       String q = showDetail.quest;
       String a = showDetail.ans;
       expect(q, 'Testing question');
       expect(a, 'Testing answer');
-      Widget card=showDetail.createState().cardDetail('testing');
-      expect(card,isNot(null));
+      Widget card = showDetail.createState().cardDetail('testing');
+      expect(card, isNot(null));
       print('Question is: $q\n\nAnswer is: $a\n\n');
     });
   });

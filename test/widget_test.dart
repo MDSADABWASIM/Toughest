@@ -1,52 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:toughest/home.dart';
-import 'package:toughest/showDetail.dart';
+import 'package:toughest/ui/showDetail.dart';
+import 'package:toughest/widgets/my_elevated_button.dart';
 
 class MockNavigatorObserver extends Mock implements NavigatorObserver {}
 
 void main() {
-  group('HomePage navigation tests', () {
-    NavigatorObserver mockObserver;
-
-    setUp(() {
-      mockObserver = MockNavigatorObserver();
-    });
-
-    Future<Null> _buildMainPage(WidgetTester tester) async {
-      await tester.pumpWidget(MaterialApp(
-        home: Home(),
-
-        /// This mocked observer will now receive all navigation events
-        /// that happen in our app.
-        navigatorObservers: [mockObserver],
-      ));
-
-      /// The tester.pumpWidget() call above just built our app widget
-      /// and triggered the pushObserver method on the mockObserver once.
-      verify(mockObserver.didPush(any, any));
-    }
-
-    Future<Null> _navigateToDetailsPage(WidgetTester tester) async {
-      /// Tap the button which should navigate to the details page.
-      /// By calling tester.pump(), we ensure that all animations
-      /// have completed before we continue further.
-      await tester.tap(find.byKey(Key('item')));
-      await tester.pump();
-    }
-
-    testWidgets('testing navigation from home page to Detail page',
-        (WidgetTester tester) async {
-      await tester.runAsync(() async {
-        await _buildMainPage(tester);
-        await _navigateToDetailsPage(tester);
-      });
-
-      verify(mockObserver.didPush(any, any));
-    });
-  });
-
   testWidgets('Checking showDetail page', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(
@@ -64,7 +24,7 @@ void main() {
     //Scrolling down to find the button.
     await tester.fling(find.text('my question'), Offset(0, -500), 100);
     // Tap the share button.
-    await tester.tap(find.byType(RaisedButton));
+    await tester.tap(find.byType(MyElevatedButton));
     // Rebuild the widget after the state has changed.
     await tester.pump();
     // Expect to find the button text.

@@ -7,7 +7,7 @@ void main() {
   group('test home page', () {
     final itemFinder = find.byValueKey('item');
 
-    FlutterDriver driver;
+    late FlutterDriver driver;
 
     // Connect to the Flutter driver before running any tests.
     setUpAll(() async {
@@ -17,9 +17,7 @@ void main() {
 
     //close the driver after finishing the tests.
     tearDownAll(() {
-      if (driver != null) {
-        driver.close();
-      }
+      driver.close();
     });
 
     test('check flutter driver health', () async {
@@ -48,7 +46,7 @@ void main() {
       final summary = TimelineSummary.summarize(timeline);
 
       // Then, save the summary to disk.
-      summary.writeSummaryToFile('scrolling_summary', pretty: true);
+      summary.writeTimelineToFile('scrolling_summary', pretty: true);
 
       print('item scrolled successfully');
     });
