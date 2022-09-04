@@ -4,6 +4,9 @@ class Style {
   static final baseTextStyle = const TextStyle(fontFamily: 'Acme',color: Colors.white);
   static final headerTextStyle = baseTextStyle.copyWith(
       color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.w600);
+  static final drawerTextStyle = const TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0);
   static final regularTextStyle = const TextStyle(
     fontFamily: 'Josefin Sans',
       color: Colors.black, fontSize: 18.0, fontWeight: FontWeight.w200);

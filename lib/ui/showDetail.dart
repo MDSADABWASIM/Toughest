@@ -1,15 +1,15 @@
-import 'dart:async';
-import 'package:mark922_flutter_lottie/mark922_flutter_lottie.dart';
 import 'package:flutter/material.dart';
-import 'package:share/share.dart';
+import 'package:lottie/lottie.dart';
+import 'package:share_plus/share_plus.dart';
 import 'dart:math';
-import 'package:toughest/textStyle.dart';
+import 'package:toughest/commons/textStyle.dart';
+import 'package:toughest/widgets/my_elevated_button.dart';
 
 class ShowDetail extends StatefulWidget {
   final String quest, ans;
   static var randomNumber = Random();
 
-  ShowDetail({this.quest, this.ans});
+  ShowDetail({required this.quest, required this.ans});
 
   static final List<Color> _colors = [
     Colors.red,
@@ -27,19 +27,19 @@ class ShowDetail extends StatefulWidget {
   }
 }
 
-class ShowDetailState extends State<ShowDetail> {
-  LottieController controller2;
-  StreamController<double> newProgressStream;
+class ShowDetailState extends State<ShowDetail> with TickerProviderStateMixin {
+  late final AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
-    newProgressStream = StreamController<double>();
+
+    _controller = AnimationController(vsync: this);
   }
 
   @override
   void dispose() {
-    newProgressStream.close();
+    _controller.dispose();
     super.dispose();
   }
 
@@ -53,13 +53,12 @@ class ShowDetailState extends State<ShowDetail> {
         "https://play.google.com/store/apps/details?id=tricky.questions");
   }
 
-
   ///add details in card.
   Widget cardDetail(String text) {
     return Stack(
       children: <Widget>[
         Container(
-            padding: EdgeInsets.symmetric(vertical: 15,horizontal: 10),
+            padding: EdgeInsets.symmetric(vertical: 15, horizontal: 10),
             decoration: BoxDecoration(
               boxShadow: <BoxShadow>[
                 BoxShadow(
@@ -118,14 +117,23 @@ class ShowDetailState extends State<ShowDetail> {
                 style: Style.regularTextStyle,
               ),
             ),
+            Lottie.asset(
+              'assets/confetti.json',
+              controller: _controller,
+              repeat: false,
+              onLoaded: (composition) {
+                _controller
+                  ..duration = composition.duration
+                  ..forward();
+              },
+            ),
           ]),
-          SizedBox(
-            height: 20.0,
-          ),
-          RaisedButton(
-            shape: OutlineInputBorder(
-                borderRadius: new BorderRadius.circular(5.0),
-                borderSide: BorderSide.none),
+          Spacer(),
+          MyElevatedButton(
+            padding: EdgeInsets.all(5),
+            shape: BeveledRectangleBorder(
+              borderRadius: new BorderRadius.circular(5.0),
+            ),
             splashColor: const Color(0xff382151),
             elevation: 10.0,
             child: Row(
@@ -135,7 +143,9 @@ class ShowDetailState extends State<ShowDetail> {
                   "Share answer with your friends",
                   style: Style.regularTextStyle,
                 ),
-                SizedBox(width: 5,),
+                SizedBox(
+                  width: 10,
+                ),
                 Icon(Icons.share),
               ],
             ),
@@ -146,12 +156,5 @@ class ShowDetailState extends State<ShowDetail> {
         ],
       ),
     );
-  }
-
-  void onViewCreatedFile(LottieController controller) {
-    this.controller2 = controller;
-    newProgressStream.stream.listen((double progress) {
-      this.controller2.setAnimationProgress(progress);
-    });
   }
 }
