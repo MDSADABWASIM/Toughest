@@ -29,7 +29,7 @@ void main() {
     await tester.pump();
     // Expect to find the button text.
     expect(find.text('Share answer with your friends'), findsOneWidget);
-    print('Found and tap on the text\n');
+    print('Found and tapped on the text\n');
   });
 }
 

@@ -8,6 +8,7 @@ import 'package:toughest/ui/showDetail.dart';
 void main() {
   late Home home;
   setUp(() {
+    TestWidgetsFlutterBinding.ensureInitialized();
     home = Home();
   });
 

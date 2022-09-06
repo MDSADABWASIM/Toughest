@@ -128,7 +128,7 @@ class ShowDetailState extends State<ShowDetail> with TickerProviderStateMixin {
               },
             ),
           ]),
-          Spacer(),
+          SizedBox(height: 20),
           MyElevatedButton(
             padding: EdgeInsets.all(5),
             shape: BeveledRectangleBorder(

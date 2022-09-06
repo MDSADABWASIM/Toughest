@@ -7,27 +7,27 @@ unit_test_task:
 widget_test_task:
   test_script: flutter test test/widget_test.dart
 
-integration_test_task:
-  env:
-    EMULATOR_API_LEVEL: 28
-    ANDROID_ABI: "default;x86"
-  container:
-    image: cirrusci/flutter:stable
-    cpu: 4
-    memory: 10G
-    kvm: true
-  fix_kvm_script: sudo chown cirrus:cirrus /dev/kvm
-  install_images_script: sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI"
-  create_device_script:
-      echo no | avdmanager create avd --force -n test -k "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI"
-  start_emulator_background_script:
-      $ANDROID_HOME/emulator/emulator-headless -verbose -avd test -no-audio -no-window
-  pub_cache:
-    folder: ~/.pub-cache
-    #Ran chmod 755 ./scripts/android-wait-for-emulator.sh in terminal to give this script permission.
-  wait_for_emulator_script:
-      - ./scripts/android-wait-for-emulator.sh
-  test_script: flutter drive --target=test_driver/app.dart
+# integration_test_task:
+#   env:
+#     EMULATOR_API_LEVEL: 28
+#     ANDROID_ABI: "default;x86"
+#   container:
+#     image: cirrusci/flutter:stable
+#     cpu: 4
+#     memory: 10G
+#     kvm: true
+#   fix_kvm_script: sudo chown cirrus:cirrus /dev/kvm
+#   install_images_script: sdkmanager "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI"
+#   create_device_script:
+#       echo no | avdmanager create avd --force -n test -k "system-images;android-$EMULATOR_API_LEVEL;$ANDROID_ABI"
+#   start_emulator_background_script:
+#       $ANDROID_HOME/emulator/emulator-headless -verbose -avd test -no-audio -no-window
+#   pub_cache:
+#     folder: ~/.pub-cache
+#     #Ran chmod 755 ./scripts/android-wait-for-emulator.sh in terminal to give this script permission.
+#   wait_for_emulator_script:
+#       - ./scripts/android-wait-for-emulator.sh
+#   test_script: flutter drive --target=test_driver/app.dart
 
 
 
