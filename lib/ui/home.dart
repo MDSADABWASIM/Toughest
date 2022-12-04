@@ -22,7 +22,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     double height = MediaQuery.of(context).size.height;
     return SideMenu(
       key: _sideMenuKey,
-      background: Colors.purple.shade300,
+      background: Colors.deepOrangeAccent,
       menu: buildMenu(),
       type: SideMenuType.shrinkNSlide,
       child: new Scaffold(
@@ -106,6 +106,8 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   final myCarousel = CarouselSlider(
     options: CarouselOptions(
       height: 400.0,
+      enlargeCenterPage: true,
+      enableInfiniteScroll: true,
       autoPlay: true,
       autoPlayCurve: Curves.easeInOut,
       autoPlayAnimationDuration: Duration(seconds: 2),
