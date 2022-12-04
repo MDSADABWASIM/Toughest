@@ -10,9 +10,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return new MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Josefin Sans'),
+      theme: ThemeData(
+          // fontFamily: 'Josefin Sans',
+          ),
       home: Home(),
     );
   }
 }
-
