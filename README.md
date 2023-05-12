@@ -18,5 +18,11 @@ An app for interview preparation.
 
 ### For Vietnam users [read this article](https://taimienphi.vn/download-tricky-questions-and-answer-87601) published by [Taimienphi](https://taimienphi.vn/)
 
+## Star History <a name="star-history"></a>
+
+<a href="https://github.com/xtekky/gpt4free/stargazers">
+        <img width="500" alt="Star History Chart" src="https://api.star-history.com/svg?repos=MDSADABWASIM/Toughest&type=Date">
+      </a> 
+
 
 **Made with** :heart: **and Flutter**
