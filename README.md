@@ -16,7 +16,7 @@ An app for interview preparation.
 ## Good UI.
 ## Featured in many websites.
 
-### For Vietnam users [read this article](https://taimienphi.vn/download-tricky-questions-and-answer-87601) published by [Taimienphi](https://taimienphi.vn/)
+### For Vietnamese users [read this article](https://taimienphi.vn/download-tricky-questions-and-answer-87601) published by [Taimienphi](https://taimienphi.vn/)
 
 ## Star History <a name="star-history"></a>
 
