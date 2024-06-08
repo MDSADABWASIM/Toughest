@@ -9,7 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   lottie: ^1.4.2
-  share_plus: ^4.0.10+1
+  share_plus: any
   shrink_sidemenu: ^2.0.0+2-null-safety
   carousel_slider: ^4.1.1
   url_launcher: ^6.1.5

@@ -9,7 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 class Home extends StatefulWidget {
   @override
   HomeState createState() {
-    return new HomeState();
+    return HomeState();
   }
 }
 
@@ -22,15 +22,15 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
     double height = MediaQuery.of(context).size.height;
     return SideMenu(
       key: _sideMenuKey,
-      background: Colors.purple.shade300,
+      background: Colors.black87,
       menu: buildMenu(),
       type: SideMenuType.shrinkNSlide,
-      child: new Scaffold(
-        appBar: new AppBar(
+      child: Scaffold(
+        appBar: AppBar(
           elevation: 10.0,
           centerTitle: true,
           backgroundColor: Colors.white,
-          leading: new GestureDetector(
+          leading: GestureDetector(
             child: const Icon(
               Icons.menu,
               color: Colors.black,
@@ -44,7 +44,7 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               }
             },
           ),
-          title: new Text(
+          title: Text(
             'TOUGHEST',
             style: TextStyle(color: Colors.black),
           ),
@@ -57,11 +57,14 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               height: height / 2.5,
               child: myCarousel,
             ),
-            getListItems(Color(0xFFF1B136), Icons.person, 'Behavioural Based'),
-            getListItems(Color(0xFF885F7F), Icons.wc, 'Communications Based'),
-            getListItems(Color(0xFF13B0A5), Icons.call_split, 'Opinion Based'),
             getListItems(
-                Color(0xFFD0C490), Icons.assessment, 'Performance Based'),
+                Color(0xFFF1B136), Icons.person_outline, 'Behavioural Based'),
+            getListItems(
+                Color(0xFF885F7F), Icons.wc_outlined, 'Communications Based'),
+            getListItems(
+                Color(0xFF13B0A5), Icons.call_split_outlined, 'Opinion Based'),
+            getListItems(Color(0xFFD0C490), Icons.assessment_outlined,
+                'Performance Based'),
             getListItems(Color(0xFFEF6363), Icons.help_outline, 'Brainteasers'),
           ],
         ),

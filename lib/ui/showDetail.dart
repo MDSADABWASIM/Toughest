@@ -12,12 +12,8 @@ class ShowDetail extends StatefulWidget {
   ShowDetail({required this.quest, required this.ans});
 
   static final List<Color> _colors = [
-    Colors.red,
     Colors.teal,
-    Colors.orange,
     Colors.green,
-    Colors.pink,
-    Colors.purple,
     Colors.blue,
   ];
 
@@ -85,8 +81,8 @@ class ShowDetailState extends State<ShowDetail> with TickerProviderStateMixin {
     return Scaffold(
       appBar: AppBar(
         elevation: 10.0,
-        backgroundColor: Color(0xFFC67A7D),
-        title: Text('Answer'),
+        backgroundColor: Colors.white,
+        title: Text('Answer', style: TextStyle(fontWeight: FontWeight.w500),),
       ),
       body: ListView(
         padding: EdgeInsets.all(8),
@@ -132,7 +128,7 @@ class ShowDetailState extends State<ShowDetail> with TickerProviderStateMixin {
           MyElevatedButton(
             padding: EdgeInsets.all(5),
             shape: BeveledRectangleBorder(
-              borderRadius: new BorderRadius.circular(5.0),
+              borderRadius:  BorderRadius.circular(5.0),
             ),
             splashColor: const Color(0xff382151),
             elevation: 10.0,
@@ -140,16 +136,16 @@ class ShowDetailState extends State<ShowDetail> with TickerProviderStateMixin {
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(
-                  "Share answer with your friends",
+                  "Share the answer",
                   style: Style.regularTextStyle,
                 ),
                 SizedBox(
                   width: 10,
                 ),
-                Icon(Icons.share),
+                Icon(Icons.share, color: Colors.black),
               ],
             ),
-            color: Color(0xFF56cfdf),
+            color: Colors.green,
             onPressed: () => share(widget.quest, widget.ans),
           ),
           SizedBox(height: 20.0),

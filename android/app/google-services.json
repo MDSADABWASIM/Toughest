@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:334775414819:android:9c132ba3d8ea0251",
         "android_client_info": {
-          "package_name": "tricky.questions"
+          "package_name": "com.example.toughest"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "334775414819-tbblv9dbm3bs360d50flu35jshg4ppe1.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "tricky.questions",
+            "package_name": "com.example.toughest",
             "certificate_hash": "c0a20c5e285826d3acbe38e92db04a5e5fc66101"
           }
         },

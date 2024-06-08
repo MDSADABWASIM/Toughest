@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Style {
   static final baseTextStyle = const TextStyle(fontFamily: 'Acme',color: Colors.white);
   static final headerTextStyle = baseTextStyle.copyWith(
-      color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.w600);
+      color: Colors.black, fontSize: 20.0, fontWeight: FontWeight.w500);
   static final drawerTextStyle = const TextStyle(
                       color: Colors.white,
                       fontSize: 20.0);

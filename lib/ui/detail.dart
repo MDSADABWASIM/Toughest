@@ -12,11 +12,14 @@ class Detail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
+    return Scaffold(
       appBar: AppBar(
           elevation: 20.0,
-          backgroundColor: new Color(0xFFC67A7D),
-          title: Text('Questions')),
+          backgroundColor: Color(0xFFC67A7D),
+          title: Text(
+            'Questions',
+            style: TextStyle(fontWeight: FontWeight.w500),
+          )),
       body: Flex(
         direction: Axis.vertical,
         children: <Widget>[
@@ -26,8 +29,8 @@ class Detail extends StatelessWidget {
               decoration: BoxDecoration(
                   gradient: LinearGradient(
                 colors: <Color>[
-                  new Color(0xFFC67A7D),
-                  new Color(0xFF5D3068),
+                  Color(0xFFC67A7D),
+                  Color(0xFF5D3068),
                 ],
                 stops: [0.0, 0.9],
                 begin: const FractionalOffset(0.0, 0.0),
@@ -104,7 +107,7 @@ class Detail extends StatelessWidget {
       future: loadData(),
       builder: (context, AsyncSnapshot<List<Item>> snapshot) {
         if (!snapshot.hasData)
-          return Center(child: new CircularProgressIndicator());
+          return Center(child: CircularProgressIndicator());
         return ListView.builder(
           itemCount: snapshot.data!.length,
           itemBuilder: (context, i) {
@@ -121,7 +124,7 @@ class Detail extends StatelessWidget {
                       style: Style.commonTextStyle,
                     ),
                     trailing: IconButton(
-                      icon: Icon(Icons.share, color: Color(0xFF56cfdf)),
+                      icon: Icon(Icons.share, color: Colors.white),
                       iconSize: 18.0,
                       onPressed: () => share(quest),
                     ),
