@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:toughest/ui/showDetail.dart';
+import 'package:toughest/ui/showdetail.dart';
 import 'package:toughest/widgets/my_elevated_button.dart';
 
 class MockNavigatorObserver extends Mock implements NavigatorObserver {}
@@ -20,7 +20,7 @@ void main() {
     // Gets the created widgets
     Iterable<Widget> listOfWidgets = tester.allWidgets;
     checkIfTextsCreatedCorrectly(listOfWidgets, expectedText);
-    print('Found all texts\n');
+    debugPrint('Found all texts\n');
     //Scrolling down to find the button.
     await tester.fling(find.text('my question'), Offset(0, -500), 100);
     // Tap the share button.
@@ -29,7 +29,7 @@ void main() {
     await tester.pump();
     // Expect to find the button text.
     expect(find.text('Share answer with your friends'), findsOneWidget);
-    print('Found and tapped on the text\n');
+    debugPrint('Found and tapped on the text\n');
   });
 }
 

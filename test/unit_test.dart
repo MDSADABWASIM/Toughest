@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:toughest/ui/detail.dart';
 import 'package:toughest/ui/home.dart';
-import 'package:toughest/ui/showDetail.dart';
+import 'package:toughest/ui/showdetail.dart';
 
 void main() {
   late Home home;
@@ -28,7 +27,7 @@ void main() {
       expect(text, isA<String>());
       expect(text, equals('Communications Based'));
       expect(items, isNot(null));
-      print('Detail page text is: $text\n\n');
+      debugPrint('Detail page text is: $text\n\n');
     });
   });
 
@@ -42,7 +41,7 @@ void main() {
       expect(a, 'Testing answer');
       Widget card = showDetail.createState().cardDetail('testing');
       expect(card, isNot(null));
-      print('Question is: $q\n\nAnswer is: $a\n\n');
+      debugPrint('Question is: $q\n\nAnswer is: $a\n\n');
     });
   });
 }
