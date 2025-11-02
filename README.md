@@ -1,3 +1,4 @@
+[![Stand With Palestine](https://raw.githubusercontent.com/TheBSD/StandWithPalestine/main/banner-no-action.svg)](https://thebsd.github.io/StandWithPalestine)
 
 [![Build Status](https://api.cirrus-ci.com/github/MDSADABWASIM/Toughest.svg)](https://cirrus-ci.com/github/MDSADABWASIM/Toughest)
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/MDSADABWASIM/Toughest/blob/master/LICENSE)
