@@ -1,5 +1,6 @@
 import 'package:flutter_driver/flutter_driver.dart';
 import 'package:test/test.dart';
+import 'package:flutter/foundation.dart';
 
 void main() {
   // RUN THIS INTEGRATION TEST USING flutter drive --target=test_driver/app.dart
@@ -22,7 +23,7 @@ void main() {
 
     test('check flutter driver health', () async {
       Health health = await driver.checkHealth();
-      print(health.status);
+      debugPrint(health.status.toString());
     });
 
     Future<void> delay([int milliseconds = 250]) async {
@@ -33,7 +34,7 @@ void main() {
       await delay(1000);
       await driver.scroll(
           find.byValueKey('banner'), -500, 0, Duration(milliseconds: 500));
-      print('banner scrolled successfully');
+      debugPrint('banner scrolled successfully');
     });
 
     test('Scroll the items', () async {
@@ -48,7 +49,7 @@ void main() {
       // Then, save the summary to disk.
       summary.writeTimelineToFile('scrolling_summary', pretty: true);
 
-      print('item scrolled successfully');
+      debugPrint('item scrolled successfully');
     });
 
     test('Tap on the item', () async {

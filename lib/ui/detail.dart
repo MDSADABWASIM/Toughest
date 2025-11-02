@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:share_plus/share_plus.dart';
 import 'dart:convert';
-import 'package:toughest/commons/textStyle.dart';
+import 'package:toughest/commons/textstyle.dart';
 import 'package:toughest/models/items.dart';
-import 'package:toughest/ui/showDetail.dart';
+import 'package:toughest/ui/showdetail.dart';
 
 class Detail extends StatelessWidget {
-  final data, title;
-  Detail({this.data, this.title});
+  final dynamic data;
+  final dynamic title;
+  const Detail({
+    super.key,
+    this.data,
+    this.title,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +30,6 @@ class Detail extends StatelessWidget {
         children: <Widget>[
           Flexible(
             child: Container(
-              child: buildListItems(),
               decoration: BoxDecoration(
                   gradient: LinearGradient(
                 colors: <Color>[
@@ -36,6 +40,7 @@ class Detail extends StatelessWidget {
                 begin: const FractionalOffset(0.0, 0.0),
                 end: const FractionalOffset(0.0, 1.0),
               )),
+              child: buildListItems(),
             ),
           ),
         ],
@@ -57,15 +62,15 @@ class Detail extends StatelessWidget {
     } else {
       type = "Brainteasures";
     }
-    var list;
+    List list;
     list = data[type] as List;
-    print(list);
+    // print(list);
     List<Item> typeList = list.map((i) => Item.fromJson(i)).toList();
     return typeList;
   }
 
   share(String title) {
-    Share.share("Answer this question\n\n" + title);
+    Share.share("Answer this question\n\n$title");
   }
 
   ///Takes the local json file,
@@ -96,7 +101,7 @@ class Detail extends StatelessWidget {
       final jsonData = jsonResponse[type];
       itemList = ItemList.fromJson(jsonData);
     } catch (e) {
-      print(e);
+      debugPrint(e.toString());
     }
     return itemList.list;
   }
@@ -106,8 +111,9 @@ class Detail extends StatelessWidget {
     return FutureBuilder(
       future: loadData(),
       builder: (context, AsyncSnapshot<List<Item>> snapshot) {
-        if (!snapshot.hasData)
+        if (!snapshot.hasData) {
           return Center(child: CircularProgressIndicator());
+        }
         return ListView.builder(
           itemCount: snapshot.data!.length,
           itemBuilder: (context, i) {

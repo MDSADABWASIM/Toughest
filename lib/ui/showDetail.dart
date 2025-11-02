@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 import 'package:share_plus/share_plus.dart';
 import 'dart:math';
-import 'package:toughest/commons/textStyle.dart';
+import 'package:toughest/commons/textstyle.dart';
 import 'package:toughest/widgets/my_elevated_button.dart';
 
 class ShowDetail extends StatefulWidget {
   final String quest, ans;
   static var randomNumber = Random();
 
-  ShowDetail({required this.quest, required this.ans});
+  const ShowDetail({super.key, required this.quest, required this.ans});
 
   static final List<Color> _colors = [
     Colors.teal,
@@ -40,13 +40,8 @@ class ShowDetailState extends State<ShowDetail> with TickerProviderStateMixin {
   }
 
   share(String question, String answer) {
-    Share.share("Q:" +
-        question +
-        "\n\n" +
-        "A:" +
-        answer +
-        "\n\nDownload the app for more amazing Q/A\n " +
-        "https://play.google.com/store/apps/details?id=tricky.questions");
+    Share.share(
+        "Q:$question\n\nA:$answer\n\nDownload the app for more amazing Q/A\n https://play.google.com/store/apps/details?id=tricky.questions");
   }
 
   ///add details in card.
@@ -82,7 +77,10 @@ class ShowDetailState extends State<ShowDetail> with TickerProviderStateMixin {
       appBar: AppBar(
         elevation: 10.0,
         backgroundColor: Colors.white,
-        title: Text('Answer', style: TextStyle(fontWeight: FontWeight.w500),),
+        title: Text(
+          'Answer',
+          style: TextStyle(fontWeight: FontWeight.w500),
+        ),
       ),
       body: ListView(
         padding: EdgeInsets.all(8),
@@ -128,10 +126,12 @@ class ShowDetailState extends State<ShowDetail> with TickerProviderStateMixin {
           MyElevatedButton(
             padding: EdgeInsets.all(5),
             shape: BeveledRectangleBorder(
-              borderRadius:  BorderRadius.circular(5.0),
+              borderRadius: BorderRadius.circular(5.0),
             ),
             splashColor: const Color(0xff382151),
             elevation: 10.0,
+            color: Colors.green,
+            onPressed: () => share(widget.quest, widget.ans),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
@@ -145,8 +145,6 @@ class ShowDetailState extends State<ShowDetail> with TickerProviderStateMixin {
                 Icon(Icons.share, color: Colors.black),
               ],
             ),
-            color: Colors.green,
-            onPressed: () => share(widget.quest, widget.ans),
           ),
           SizedBox(height: 20.0),
         ],

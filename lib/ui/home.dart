@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:shrink_sidemenu/shrink_sidemenu.dart';
 import 'package:toughest/ui/detail.dart';
-import 'package:toughest/commons/textStyle.dart';
+import 'package:toughest/commons/textstyle.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
+  const Home({super.key});
+
   @override
   HomeState createState() {
     return HomeState();
@@ -15,7 +17,7 @@ class Home extends StatefulWidget {
 
 class HomeState extends State<Home> with TickerProviderStateMixin {
   final GlobalKey<SideMenuState> _sideMenuKey = GlobalKey<SideMenuState>();
-  var data;
+  dynamic data;
 
   @override
   Widget build(BuildContext context) {
@@ -36,11 +38,11 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
               color: Colors.black,
             ),
             onTap: () {
-              final _state = _sideMenuKey.currentState!;
-              if (_state.isOpened) {
-                _state.closeSideMenu();
+              final sidemenuustate = _sideMenuKey.currentState!;
+              if (sidemenuustate.isOpened) {
+                sidemenuustate.closeSideMenu();
               } else {
-                _state.openSideMenu();
+                sidemenuustate.openSideMenu();
               }
             },
           ),
@@ -143,18 +145,18 @@ class HomeState extends State<Home> with TickerProviderStateMixin {
   }
 
   _sharer() {
-    Share.share("Skills 101/TOUGHEST - Test your knowledge.\n" +
+    Share.share("Skills 101/TOUGHEST - Test your knowledge.\n"
         "The app that will make you an amazing candidate for any job.\n"
-            "Are you ready?\n"
-            "Download it now\n"
-            "https://play.google.com/store/apps/details?id=tricky.questions");
+        "Are you ready?\n"
+        "Download it now\n"
+        "https://play.google.com/store/apps/details?id=tricky.questions");
   }
 
   _launchgmail() async {
-    final Uri _url = Uri.parse(
+    final Uri url = Uri.parse(
         'mailto:indiancoder001@gmail.com?subject=Feedback&body=Feedback for Toughest');
-    if (!await launchUrl(_url)) {
-      throw 'Could not launch $_url';
+    if (!await launchUrl(url)) {
+      throw 'Could not launch $url';
     }
   }
 }

@@ -1,4 +1,4 @@
-  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class MyElevatedButton extends StatelessWidget {
   final VoidCallback? onPressed;
@@ -14,8 +14,8 @@ class MyElevatedButton extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final OutlinedBorder? shape;
 
-  MyElevatedButton({
-    Key? key,
+  const MyElevatedButton({
+    super.key,
     required this.onPressed,
     required this.child,
     this.color,
@@ -28,19 +28,19 @@ class MyElevatedButton extends StatelessWidget {
     this.disabledElevation,
     this.padding,
     this.shape,
-  }) : super(key: key);
+  });
 
-  bool _isPressed(Set<MaterialState> states) =>
-      states.contains(MaterialState.pressed);
-  bool _isDisabled(Set<MaterialState> states) =>
-      states.contains(MaterialState.disabled);
-  bool _isHovered(Set<MaterialState> states) =>
-      states.contains(MaterialState.hovered);
+  bool _isPressed(Set<WidgetState> states) =>
+      states.contains(WidgetState.pressed);
+  bool _isDisabled(Set<WidgetState> states) =>
+      states.contains(WidgetState.disabled);
+  bool _isHovered(Set<WidgetState> states) =>
+      states.contains(WidgetState.hovered);
 
   @override
   Widget build(BuildContext context) {
     final style = ButtonStyle(
-      backgroundColor: MaterialStateProperty.resolveWith<Color?>((states) {
+      backgroundColor: WidgetStateProperty.resolveWith<Color?>((states) {
         if (_isDisabled(states)) {
           return disabledColor;
         } else if (_isHovered(states)) {
@@ -48,24 +48,26 @@ class MyElevatedButton extends StatelessWidget {
         }
         return color;
       }),
-      foregroundColor: MaterialStateProperty.resolveWith<Color?>((states) {
-        if (_isDisabled(states))
+      foregroundColor: WidgetStateProperty.resolveWith<Color?>((states) {
+        if (_isDisabled(states)) {
           return disabledTextColor;
-        else
+        } else {
           return null;
+        }
       }),
-      overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
-        if (_isPressed(states))
+      overlayColor: WidgetStateProperty.resolveWith<Color?>((states) {
+        if (_isPressed(states)) {
           return splashColor;
-        else
+        } else {
           return null;
+        }
       }),
-      elevation: MaterialStateProperty.resolveWith<double?>((states) {
+      elevation: WidgetStateProperty.resolveWith<double?>((states) {
         if (_isDisabled(states)) return disabledElevation;
         return elevation;
       }),
-      shape: MaterialStateProperty.all<OutlinedBorder?>(shape),
-      padding: MaterialStateProperty.all<EdgeInsetsGeometry?>(padding),
+      shape: WidgetStateProperty.all<OutlinedBorder?>(shape),
+      padding: WidgetStateProperty.all<EdgeInsetsGeometry?>(padding),
     );
 
     return ElevatedButton(
