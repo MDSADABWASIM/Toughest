@@ -1,157 +1,73 @@
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:share_plus/share_plus.dart';
-import 'dart:convert';
-import 'package:toughest/commons/textstyle.dart';
 import 'package:toughest/models/items.dart';
-import 'package:toughest/ui/showdetail.dart';
+import 'package:toughest/ui/showDetail.dart';
 
-class Detail extends StatelessWidget {
-  final dynamic data;
-  final dynamic title;
-  const Detail({
-    super.key,
-    this.data,
-    this.title,
-  });
+// DetailScreen: loads local json and shows questions in a list. Kept stateless by
+// delegating async work to a FutureBuilder. Error handling is minimal but indicated.
+class DetailScreen extends StatelessWidget {
+  final String title;
+  const DetailScreen({super.key, required this.title});
+
+  String _typeFromTitle() {
+    switch (title) {
+      case 'Behavioural Based':
+        return 'Behaviour';
+      case 'Communications Based':
+        return 'Communication';
+      case 'Opinion Based':
+        return 'Opinion';
+      case 'Performance Based':
+        return 'Performance';
+      default:
+        return 'Brainteasures';
+    }
+  }
+
+  Future<List<Item>> _loadItems() async {
+    final type = _typeFromTitle();
+    final jsonString = await rootBundle.loadString('assets/local.json');
+    final decoded = json.decode(jsonString) as Map<String, dynamic>;
+    final list = decoded[type] as List<dynamic>? ?? [];
+    return list.map((e) => Item.fromJson(e as Map<String, dynamic>)).toList();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          elevation: 20.0,
-          backgroundColor: Color(0xFFC67A7D),
-          title: Text(
-            'Questions',
-            style: TextStyle(fontWeight: FontWeight.w500),
-          )),
-      body: Flex(
-        direction: Axis.vertical,
-        children: <Widget>[
-          Flexible(
-            child: Container(
-              decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                colors: <Color>[
-                  Color(0xFFC67A7D),
-                  Color(0xFF5D3068),
-                ],
-                stops: [0.0, 0.9],
-                begin: const FractionalOffset(0.0, 0.0),
-                end: const FractionalOffset(0.0, 1.0),
-              )),
-              child: buildListItems(),
-            ),
-          ),
-        ],
+      appBar: AppBar(title: const Text('Questions')),
+      body: FutureBuilder<List<Item>>(
+        future: _loadItems(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (snapshot.hasError) {
+            return Center(child: Text('Failed to load questions'));
+          }
+
+          final items = snapshot.data ?? [];
+          return ListView.separated(
+            itemCount: items.length,
+            separatorBuilder: (_, __) => const Divider(height: 1),
+            itemBuilder: (context, index) {
+              final item = items[index];
+              return ListTile(
+                title: Text(item.question,
+                    style: const TextStyle(
+                        fontSize: 16, fontWeight: FontWeight.w500)),
+                trailing: IconButton(
+                    icon: const Icon(Icons.share),
+                    onPressed: () {/* Share question */}),
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                    builder: (_) => ShowDetailScreen(item: item))),
+              );
+            },
+          );
+        },
       ),
-    );
-  }
-
-  //our list of questions type.
-  List list() {
-    String type;
-    if (title == 'Behavioural Based') {
-      type = "Behaviour";
-    } else if (title == 'Communications Based') {
-      type = "Communication";
-    } else if (title == 'Opinion Based') {
-      type = "Opinion";
-    } else if (title == 'Performance Based') {
-      type = "Performance";
-    } else {
-      type = "Brainteasures";
-    }
-    List list;
-    list = data[type] as List;
-    // print(list);
-    List<Item> typeList = list.map((i) => Item.fromJson(i)).toList();
-    return typeList;
-  }
-
-  share(String title) {
-    Share.share("Answer this question\n\n$title");
-  }
-
-  ///Takes the local json file,
-  ///because that contains, Q/A data.
-  _retrieveLocalData() async {
-    return await rootBundle.loadString('assets/local.json');
-  }
-
-  ///take the asset and decode json file.
-  Future<List<Item>> loadData() async {
-    late ItemList itemList;
-    try {
-      String type;
-
-      if (title == 'Behavioural Based') {
-        type = "Behaviour";
-      } else if (title == 'Communications Based') {
-        type = "Communication";
-      } else if (title == 'Opinion Based') {
-        type = "Opinion";
-      } else if (title == 'Performance Based') {
-        type = "Performance";
-      } else {
-        type = "Brainteasures";
-      }
-      String jsonString = await _retrieveLocalData();
-      final jsonResponse = json.decode(jsonString);
-      final jsonData = jsonResponse[type];
-      itemList = ItemList.fromJson(jsonData);
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-    return itemList.list;
-  }
-
-  ///List of questions uses futurBuilder.
-  Widget buildListItems() {
-    return FutureBuilder(
-      future: loadData(),
-      builder: (context, AsyncSnapshot<List<Item>> snapshot) {
-        if (!snapshot.hasData) {
-          return Center(child: CircularProgressIndicator());
-        }
-        return ListView.builder(
-          itemCount: snapshot.data!.length,
-          itemBuilder: (context, i) {
-            String quest, ans;
-            quest = snapshot.data![i].question;
-            ans = snapshot.data![i].answer;
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 4.0),
-              child: Column(
-                children: <Widget>[
-                  ListTile(
-                    title: Text(
-                      quest,
-                      style: Style.commonTextStyle,
-                    ),
-                    trailing: IconButton(
-                      icon: Icon(Icons.share, color: Colors.white),
-                      iconSize: 18.0,
-                      onPressed: () => share(quest),
-                    ),
-                    onTap: () => Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            ShowDetail(quest: quest, ans: ans),
-                      ),
-                    ),
-                  ),
-                  Container(
-                      padding: EdgeInsets.only(left: 15, right: 15),
-                      child: Divider(
-                        color: Colors.white,
-                      )),
-                ],
-              ),
-            );
-          },
-        );
-      },
     );
   }
 }
