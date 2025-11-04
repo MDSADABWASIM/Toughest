@@ -3,25 +3,25 @@ description: A new Flutter project.
 version: 2.0.2+4
 
 environment:
-  sdk: ">=2.17.1 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  lottie: ^1.4.2
-  share_plus: any
-  shrink_sidemenu: ^2.0.0+2-null-safety
-  carousel_slider: ^4.1.1
-  url_launcher: ^6.1.5
+  lottie:
+  share_plus:
+  shrink_sidemenu:
+  carousel_slider:
+  url_launcher:
   flutter_test:
     sdk: flutter
 
 dev_dependencies:
   flutter_driver:
     sdk: flutter
-  flutter_lints: ^5.0.0
-  mockito: null
-  test: null
+  flutter_lints:
+  mockito:
+  test:
 
 flutter:
   uses-material-design: true
